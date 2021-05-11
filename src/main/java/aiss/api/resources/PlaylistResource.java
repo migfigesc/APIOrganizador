@@ -34,18 +34,6 @@ import aiss.model.repository.MapPlaylistRepository;
 import aiss.model.repository.PlaylistRepository;
 
 
-// por favor que funcione el push
-
-// pruebas osaidasionda
-
-// asiudbasuidbs
-
-///jsdskjdhksdf
-
-// ptuierruj9df pofsd
-
-//enrique
-
 @Path("/lists")
 public class PlaylistResource {
 	
