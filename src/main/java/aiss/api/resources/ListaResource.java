@@ -27,6 +27,7 @@ import org.jboss.resteasy.spi.BadRequestException;
 import org.jboss.resteasy.spi.NotFoundException;
 
 import aiss.api.resources.comparators.ComparatorFechaCreacionLista;
+import aiss.api.resources.comparators.ComparatorFechaCreacionListaReversed;
 import aiss.api.resources.comparators.ComparatorNamePlayList;
 import aiss.api.resources.comparators.ComparatorNamePlayListReversed;
 import aiss.api.resources.comparators.ComparatorNombreLista;
@@ -102,6 +103,8 @@ public class ListaResource {
 				Collections.sort(result, new ComparatorNombreLista());
 			}else if(order.equals("fc")) {
 				Collections.sort(result, new ComparatorFechaCreacionLista());
+			}else if(order.equals("-fc")) {
+				Collections.sort(result, new ComparatorFechaCreacionListaReversed());
 			}
 			else {
 				throw new BadRequestException("The order parameter must be a 'nombre' or 'fc'.");
