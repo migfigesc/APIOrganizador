@@ -68,7 +68,7 @@ public class MapListaRepository implements ListaRepository{
 	@Override
 	public void addTarea(String listaId, String tareaId) {
 		Lista lista = getLista(listaId);
-		lista.addSong(tareaMap.get(tareaId));
+		lista.addTarea(tareaMap.get(tareaId));
 	}
 
 	@Override
@@ -78,7 +78,7 @@ public class MapListaRepository implements ListaRepository{
 
 	@Override
 	public void removeTarea(String listaId, String tareaId) {
-		getLista(listaId).deleteSong(tareaId);
+		getLista(listaId).deleteTarea(tareaId);
 	}
 
 	
