@@ -104,10 +104,11 @@ public class MapListaRepository implements ListaRepository{
 	@Override
 	public void updateTarea(Tarea s) {
 		Tarea tarea = tareaMap.get(s.getId());
-		//song.setTitle(s.getTitle());
-		//song.setAlbum(s.getAlbum());
-		//song.setArtist(s.getArtist());
-		//song.setYear(s.getYear());
+		tarea.setTitulo(s.getTitulo());
+		tarea.setDescripcion(s.getDescripcion());
+		tarea.setCategoria(s.getCategoria());
+		tarea.setCompletado(s.getCompletado());
+		tarea.setFechaVencimiento(s.getFechaVencimiento());
 	}
 
 	@Override
