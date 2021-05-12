@@ -19,15 +19,11 @@ import org.jboss.resteasy.spi.NotFoundException;
 import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 
-import aiss.api.resources.comparators.ComparatorAlbumSong;
-import aiss.api.resources.comparators.ComparatorNamePlayList;
-import aiss.api.resources.comparators.ComparatorNamePlayListReversed;
-import aiss.api.resources.comparators.ComparatorNameSong;
-import aiss.api.resources.comparators.ComparatorYearSong;
-import aiss.model.Lista;
+import aiss.api.resources.comparators.ComparatorCategoriaTarea;
+import aiss.api.resources.comparators.ComparatorFechaCreacionTarea;
+import aiss.api.resources.comparators.ComparatorFechaVencimientoTarea;
+import aiss.api.resources.comparators.ComparatorTituloTarea;
 import aiss.model.Tarea;
-import aiss.model.repository.MapPlaylistRepository;
-import aiss.model.repository.PlaylistRepository;
 import aiss.model.repository.ListaRepository;
 import aiss.model.repository.MapListaRepository;
 
@@ -36,7 +32,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
 import java.util.List;
-
 
 
 @Path("/songs")
@@ -69,32 +64,30 @@ public class TareaResource {
 		if(limit==(null) || limit>repository.getAllTareas().size()) {
 			limit=repository.getAllTareas().size();
 		}
-
 		
 		int i=0;
 		int j=0;
 		for(Tarea tarea : repository.getAllTareas()) {
 			if(j>=offset && i<limit) {
-				if( q == null || tarea.getTitulo().contains(q)||
-						song.getArtist().contains(q)||
-						song.getAlbum().contains(q)) {
-					
+				if( q == null || tarea.getTitulo().contains(q) || tarea.getCategoria().contains(q) || tarea.getDescripcion().contains(q) ){
 					i++;
-					result.add(song);
+					result.add(tarea);
 				}
 			}
 			j++;
 		}
+		
 		if(order!=null) {
-			if(order.equals("name")) {
-				Collections.sort(result, new ComparatorNameSong());
-			}else if(order.equals("album")) {
-				Collections.sort(result, new ComparatorAlbumSong());
-			}else if(order.equals("year")) {
-				
-				Collections.sort(result, new ComparatorYearSong());
+			if(order.equals("titulo")) {
+				Collections.sort(result, new ComparatorTituloTarea());
+			}else if(order.equals("fv")) {
+				Collections.sort(result, new ComparatorFechaVencimientoTarea());
+			}else if(order.equals("fc")) {
+				Collections.sort(result, new ComparatorFechaCreacionTarea());
+			}else if(order.equals("cat")) {
+				Collections.sort(result, new ComparatorCategoriaTarea());
 			}else {
-				throw new BadRequestException("The order parameter must be a 'name' or 'year' or 'album'");
+				throw new BadRequestException("The order parameter must be a 'titulo' or 'fv' or 'fc' or 'cat'.");
 			}
 		}
 		return result;
@@ -104,11 +97,8 @@ public class TareaResource {
 	@GET
 	@Path("/{id}")
 	@Produces("application/json")
-	public Tarea get(@PathParam("id") String tareaId)
-	{
-		
+	public Tarea get(@PathParam("id") String tareaId){
 		Tarea list = repository.getTarea(tareaId);
-		
 		if (list == null) {
 			throw new NotFoundException("La tarea con el id= "+ tareaId +" no ha sido encontrado");			
 		}
