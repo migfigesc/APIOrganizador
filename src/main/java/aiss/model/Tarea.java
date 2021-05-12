@@ -7,6 +7,7 @@ public class Tarea {
 	private String id;
 	private String titulo;
 	private String descripcion;
+	private String categoria;
 	private Boolean completado;
 	private LocalDate fechaCreacion;
 	private LocalDate fechaVencimiento;
@@ -14,20 +15,22 @@ public class Tarea {
 	public Tarea() {
 	}
 
-	public Tarea(String titulo, String descripcion, Boolean completado, LocalDate fechaCreacion, LocalDate fechaVencimiento) {
+	public Tarea(String titulo, String descripcion, String categoria, Boolean completado, LocalDate fechaVencimiento) {
 		this.titulo = titulo;
 		this.descripcion = descripcion;
+		this.categoria = categoria;
 		this.completado = completado;
-		this.fechaCreacion = fechaCreacion;
+		this.fechaCreacion = LocalDate.now();
 		this.fechaVencimiento = fechaVencimiento;
 	}
 	
-	public Tarea(String id, String titulo, String descripcion, Boolean completado, LocalDate fechaCreacion, LocalDate fechaVencimiento) {
+	public Tarea(String id, String titulo, String descripcion, String categoria, Boolean completado, LocalDate fechaVencimiento) {
 		this.id=id;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
+		this.categoria = categoria;
 		this.completado = completado;
-		this.fechaCreacion = fechaCreacion;
+		this.fechaCreacion = LocalDate.now();
 		this.fechaVencimiento = fechaVencimiento;
 	}
 
@@ -53,6 +56,14 @@ public class Tarea {
 
 	public void setDescripcion(String descripcion) {
 		this.descripcion = descripcion;
+	}
+
+	public String getCategoria() {
+		return categoria;
+	}
+
+	public void setCategoria(String categoria) {
+		this.categoria = categoria;
 	}
 
 	public Boolean getCompletado() {
