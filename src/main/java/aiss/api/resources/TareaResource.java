@@ -28,6 +28,7 @@ import aiss.model.Lista;
 import aiss.model.Tarea;
 import aiss.model.repository.MapPlaylistRepository;
 import aiss.model.repository.PlaylistRepository;
+import aiss.model.repository.ListaRepository;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -72,7 +73,7 @@ public class TareaResource {
 		
 		int i=0;
 		int j=0;
-		for(Song song : repository.getAllSongs()) {
+		for(Tarea tarea : repository.getAllTareas()) {
 			
 			if(j>=offset && i<limit) {
 				
