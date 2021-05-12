@@ -87,7 +87,7 @@ public class TareaResource {
 			}else if(order.equals("cat")) {
 				Collections.sort(result, new ComparatorCategoriaTarea());
 			}else {
-				throw new BadRequestException("The order parameter must be a 'titulo' or 'fv' or 'fc' or 'cat'.");
+				throw new BadRequestException("El parámetro para ordenar debe ser 'titulo' o 'fv' o 'fc' o 'cat'.");
 			}
 		}
 		return result;
@@ -100,7 +100,7 @@ public class TareaResource {
 	public Tarea get(@PathParam("id") String tareaId){
 		Tarea list = repository.getTarea(tareaId);
 		if (list == null) {
-			throw new NotFoundException("La tarea con el id= "+ tareaId +" no ha sido encontrado");			
+			throw new NotFoundException("La tarea con el id= "+ tareaId +" no ha sido encontrada");			
 		}
 		
 		return list;
@@ -128,7 +128,7 @@ public class TareaResource {
 	public Response updateTarea(Tarea tarea) {
 		Tarea oldTarea = repository.getTarea(tarea.getId());
 		if (oldTarea == null) {
-			throw new NotFoundException("La tarea con el id= "+ tarea.getId() +" no ha sido encontrado.");			
+			throw new NotFoundException("La tarea con el id= "+ tarea.getId() +" no ha sido encontrada.");			
 		}
 		
 		// Update title

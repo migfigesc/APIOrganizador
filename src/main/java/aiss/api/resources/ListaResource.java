@@ -104,7 +104,7 @@ public class ListaResource {
 				Collections.sort(result, new ComparatorFechaCreacionLista());
 			}
 			else {
-				throw new BadRequestException("The order parameter must be a 'nombre' or 'fc'.");
+				throw new BadRequestException("El parámetro para ordenar debe ser 'nombre' o 'fc'.");
 			}
 		}	
 		return result;

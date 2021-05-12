@@ -16,23 +16,21 @@ public class Tarea {
 	public Tarea() {
 	}
 
-	public Tarea(String titulo, String descripcion, String categoria, Boolean completado, String fechaVencimiento) {
+	public Tarea(String titulo, String categoria, String fechaVencimiento) {
 		this.titulo = titulo;
-		this.descripcion = descripcion;
 		this.categoria = categoria;
-		this.completado = completado;
+		this.completado = false;
 		this.fechaCreacion = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         LocalDateTime vencimientoFormat = LocalDateTime.parse(fechaVencimiento, formatter);
 		this.fechaVencimiento = vencimientoFormat;
 	}
 	
-	public Tarea(String id, String titulo, String descripcion, String categoria, Boolean completado, String fechaVencimiento) {
+	public Tarea(String id, String titulo, String categoria, String fechaVencimiento) {
 		this.id=id;
 		this.titulo = titulo;
-		this.descripcion = descripcion;
 		this.categoria = categoria;
-		this.completado = completado;
+		this.completado = false;
 		this.fechaCreacion = LocalDateTime.now();
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
         LocalDateTime vencimientoFormat = LocalDateTime.parse(fechaVencimiento, formatter);
