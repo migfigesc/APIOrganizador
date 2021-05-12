@@ -172,61 +172,61 @@ public class ListaResource {
 	
 	@DELETE
 	@Path("/{id}")
-	public Response removePlaylist(@PathParam("id") String id) {
-		Playlist toberemoved=repository.getPlaylist(id);
+	public Response removeLista(@PathParam("id") String id) {
+		Lista toberemoved=repository.getLista(id);
 		if (toberemoved == null)
-			throw new NotFoundException("The playlist with id="+ id +" was not found");
+			throw new NotFoundException("La lista con id="+ id +" no se encuentra");
 		else
-			repository.deletePlaylist(id);
+			repository.deleteLista(id);
 		
 		return Response.noContent().build();
 	}
 	
 	
 	@POST	
-	@Path("/{playlistId}/{songId}")
+	@Path("/{listaid}/{tareaid}")
 	@Consumes("text/plain")
 	@Produces("application/json")
-	public Response addSong(@Context UriInfo uriInfo,@PathParam("playlistId") String playlistId, @PathParam("songId") String songId)
+	public Response addSong(@Context UriInfo uriInfo,@PathParam("listaid") String listaid, @PathParam("tareaid") String tareaid)
 	{				
 		
-		Playlist playlist = repository.getPlaylist(playlistId);
-		Song song = repository.getSong(songId);
+		Lista lista = repository.getLista(listaid);
+		Tarea tarea = repository.getTarea(tareaid);
 		
-		if (playlist==null)
-			throw new NotFoundException("The playlist with id=" + playlistId + " was not found");
+		if (lista==null)
+			throw new NotFoundException("La lista con id=" + listaid + " no se encuentra");
 		
-		if (song == null)
-			throw new NotFoundException("The song with id=" + songId + " was not found");
+		if (tarea == null)
+			throw new NotFoundException("La tarea con id=" + tareaid + " no se encuentra");
 		
-		if (playlist.getSong(songId)!=null)
-			throw new BadRequestException("The song is already included in the playlist.");
+		if (lista.getTarea(tareaid)!=null)
+			throw new BadRequestException("La tarea ya está incluida en la lista");
 			
-		repository.addSong(playlistId, songId);		
+		repository.addTarea(listaid, tareaid);		
 
 		// Builds the response
 		UriBuilder ub = uriInfo.getAbsolutePathBuilder().path(this.getClass(), "get");
-		URI uri = ub.build(playlistId);
+		URI uri = ub.build(listaid);
 		ResponseBuilder resp = Response.created(uri);
-		resp.entity(playlist);			
+		resp.entity(lista);			
 		return resp.build();
 	}
 	
 	
 	@DELETE
-	@Path("/{playlistId}/{songId}")
-	public Response removeSong(@PathParam("playlistId") String playlistId, @PathParam("songId") String songId) {
-		Playlist playlist = repository.getPlaylist(playlistId);
-		Song song = repository.getSong(songId);
+	@Path("/{lista}/{tarea}")
+	public Response removeSong(@PathParam("listaid") String listaid, @PathParam("tareaid") String tareaid) {
+		Lista lista = repository.getLista(listaid);
+		Tarea tarea = repository.getTarea(tareaid);
 		
-		if (playlist==null)
-			throw new NotFoundException("The playlist with id=" + playlistId + " was not found");
+		if (lista==null)
+			throw new NotFoundException("La lista con id =" + listaid + " no se encuentra");
 		
-		if (song == null)
-			throw new NotFoundException("The song with id=" + songId + " was not found");
+		if (tarea == null)
+			throw new NotFoundException("La tarea con id =" + tareaid + " no se encuentra");
 		
 		
-		repository.removeSong(playlistId, songId);		
+		repository.removeTarea(listaid, tareaid);		
 		
 		return Response.noContent().build();
 	}
