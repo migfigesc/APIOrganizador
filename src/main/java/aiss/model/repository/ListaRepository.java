@@ -8,14 +8,14 @@ import aiss.model.Tarea;
 public interface ListaRepository {
 	
 	
-	// Songs
+	// Tareas
 	public void addTarea(Tarea s);
 	public Collection<Tarea> getAllTareas();
 	public Tarea getTarea(String tareaId);
 	public void updateTarea(Tarea s);
 	public void deleteTarea(String tareaId);
 	
-	// Playlists
+	// Listas
 	public void addLista(Lista p);
 	public Collection<Lista> getAllListas();
 	public Lista getLista(String listaId);
