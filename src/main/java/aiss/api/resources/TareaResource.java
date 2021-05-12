@@ -29,6 +29,7 @@ import aiss.model.Tarea;
 import aiss.model.repository.MapPlaylistRepository;
 import aiss.model.repository.PlaylistRepository;
 import aiss.model.repository.ListaRepository;
+import aiss.model.repository.MapListaRepository;
 
 import java.net.URI;
 import java.util.ArrayList;
@@ -42,10 +43,10 @@ import java.util.List;
 public class TareaResource {
 
 	public static TareaResource _instance=null;
-	PlaylistRepository repository;
+	ListaRepository repository;
 	
 	private TareaResource(){
-		repository=MapPlaylistRepository.getInstance();
+		repository=MapListaRepository.getInstance();
 	}
 	
 	public static TareaResource getInstance()
@@ -60,39 +61,30 @@ public class TareaResource {
 	public Collection<Tarea> getAll(@QueryParam("order") String order,@QueryParam("isEmpty") Boolean isEmpty,
 			@QueryParam("q") String q,@QueryParam("limit") Integer limit,@QueryParam("offset") Integer offset )
 	{
-		
 		List<Tarea> result= new ArrayList<Tarea>();
 		
-		if(offset==(null) || offset>repository.getAllSongs().size()) {
+		if(offset==(null) || offset>repository.getAllTareas().size()) {
 			offset=0;
 		}
-		if(limit==(null) || limit>repository.getAllSongs().size()) {
-			limit=repository.getAllSongs().size();
+		if(limit==(null) || limit>repository.getAllTareas().size()) {
+			limit=repository.getAllTareas().size();
 		}
 
 		
 		int i=0;
 		int j=0;
 		for(Tarea tarea : repository.getAllTareas()) {
-			
 			if(j>=offset && i<limit) {
-				
-			
-			
-				if( q == null || song.getTitle().contains(q)||
+				if( q == null || tarea.getTitulo().contains(q)||
 						song.getArtist().contains(q)||
 						song.getAlbum().contains(q)) {
 					
 					i++;
-					
-						result.add(song);
-				
-			}
+					result.add(song);
 				}
-			
+			}
 			j++;
 		}
-		
 		if(order!=null) {
 			if(order.equals("name")) {
 				Collections.sort(result, new ComparatorNameSong());
@@ -101,15 +93,9 @@ public class TareaResource {
 			}else if(order.equals("year")) {
 				
 				Collections.sort(result, new ComparatorYearSong());
-
-				
-
 			}else {
 				throw new BadRequestException("The order parameter must be a 'name' or 'year' or 'album'");
 			}
-			
-		
-		
 		}
 		return result;
 	}
@@ -118,13 +104,13 @@ public class TareaResource {
 	@GET
 	@Path("/{id}")
 	@Produces("application/json")
-	public Song get(@PathParam("id") String songId)
+	public Tarea get(@PathParam("id") String tareaId)
 	{
 		
-		Song list = repository.getSong(songId);
+		Tarea list = repository.getTarea(tareaId);
 		
 		if (list == null) {
-			throw new NotFoundException("The song with id="+ songId +" was not found");			
+			throw new NotFoundException("La tarea con el id= "+ tareaId +" no ha sido encontrado");			
 		}
 		
 		return list;
@@ -133,64 +119,64 @@ public class TareaResource {
 	@POST
 	@Consumes("application/json")
 	@Produces("application/json")
-	public Response addSong(@Context UriInfo uriInfo, Song song) {
-		if (song.getTitle() == null || "".equals(song.getTitle()))
-			throw new BadRequestException("The name of the song must not be null");
-		
-	
+	public Response addTarea(@Context UriInfo uriInfo, Tarea tarea) {
+		if (tarea.getTitulo() == null || "".equals(tarea.getTitulo()))
+			throw new BadRequestException("El nombre de la tarea no puede ser nulo.");
 
-		repository.addSong(song);
+		repository.addTarea(tarea);
 
 		// Builds the response. Returns the playlist the has just been added.
 		UriBuilder ub = uriInfo.getAbsolutePathBuilder().path(this.getClass(), "get");
-		URI uri = ub.build(song.getId());
+		URI uri = ub.build(tarea.getId());
 		ResponseBuilder resp = Response.created(uri);
-		resp.entity(song);			
+		resp.entity(tarea);			
 		return resp.build();
 	}
-
-
-	
-
 	
 	@PUT
 	@Consumes("application/json")
-	public Response updateSong(Song song) {
-		Song oldSong = repository.getSong(song.getId());
-		if (oldSong == null) {
-			throw new NotFoundException("The song with id="+ song.getId() +" was not found");			
+	public Response updateTarea(Tarea tarea) {
+		Tarea oldTarea = repository.getTarea(tarea.getId());
+		if (oldTarea == null) {
+			throw new NotFoundException("La tarea con el id= "+ tarea.getId() +" no ha sido encontrado.");			
 		}
 		
-		
-		
 		// Update title
-		if (song.getTitle()!=null)
-			oldSong.setTitle(song.getTitle());
+		if (tarea.getTitulo()!=null)
+			oldTarea.setTitulo(tarea.getTitulo());
 		
-		// Update Artist
-		if (song.getArtist()!=null)
-			oldSong.setArtist(song.getArtist());
+		// Update Descripcion
+		if (tarea.getDescripcion()!=null)
+			oldTarea.setDescripcion(tarea.getDescripcion());
 		
-		//Update Year
-		if (song.getYear()!=null)
-			oldSong.setYear(song.getYear());
+		//Update Categoría
+		if (tarea.getCategoria()!=null)
+			oldTarea.setCategoria(tarea.getCategoria());
 		
-		//Update Album
-			if (song.getAlbum()!=null)
-				oldSong.setAlbum(song.getAlbum());
+		//Update Completado
+		if (tarea.getCompletado()!=null)
+			oldTarea.setCompletado(tarea.getCompletado());
+		
+		//Update FechaCreacion
+		if (tarea.getFechaCreacion()!=null)
+			oldTarea.setFechaCreacion(tarea.getFechaCreacion());
+		
+		//Update FechaVencimiento
+				if (tarea.getFechaVencimiento()!=null)
+					oldTarea.setFechaVencimiento(tarea.getFechaVencimiento());
 		
 		return Response.noContent().build();
 	}
 	
 	@DELETE
 	@Path("/{id}")
-	public Response removeSong(@PathParam("id") String songId) {
+	public Response removeTarea(@PathParam("id") String tareaId) {
 		
-		Song toberemoved=repository.getSong(songId);
+		Tarea toberemoved=repository.getTarea(tareaId);
 		if (toberemoved == null)
-			throw new NotFoundException("The song with id="+ songId +" was not found");
+			throw new NotFoundException("La tarea con el id="+ tareaId +" no ha sido encontrada.");
 		else
-			repository.deleteSong(songId);
+			repository.deleteTarea(tareaId);
 		
 		return Response.noContent().build();
 	}
