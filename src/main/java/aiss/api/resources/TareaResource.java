@@ -24,8 +24,8 @@ import aiss.api.resources.comparators.ComparatorNamePlayList;
 import aiss.api.resources.comparators.ComparatorNamePlayListReversed;
 import aiss.api.resources.comparators.ComparatorNameSong;
 import aiss.api.resources.comparators.ComparatorYearSong;
-import aiss.model.Playlist;
-import aiss.model.Song;
+import aiss.model.Lista;
+import aiss.model.Tarea;
 import aiss.model.repository.MapPlaylistRepository;
 import aiss.model.repository.PlaylistRepository;
 
@@ -56,11 +56,11 @@ public class TareaResource {
 	
 	@GET
 	@Produces("application/json")
-	public Collection<Song> getAll(@QueryParam("order") String order,@QueryParam("isEmpty") Boolean isEmpty,
+	public Collection<Tarea> getAll(@QueryParam("order") String order,@QueryParam("isEmpty") Boolean isEmpty,
 			@QueryParam("q") String q,@QueryParam("limit") Integer limit,@QueryParam("offset") Integer offset )
 	{
 		
-		List<Song> result= new ArrayList<Song>();
+		List<Tarea> result= new ArrayList<Tarea>();
 		
 		if(offset==(null) || offset>repository.getAllSongs().size()) {
 			offset=0;
