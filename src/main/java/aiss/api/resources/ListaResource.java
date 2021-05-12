@@ -26,10 +26,16 @@ import javax.ws.rs.core.Response.ResponseBuilder;
 import org.jboss.resteasy.spi.BadRequestException;
 import org.jboss.resteasy.spi.NotFoundException;
 
+import aiss.api.resources.comparators.ComparatorFechaCreacionLista;
 import aiss.api.resources.comparators.ComparatorNamePlayList;
 import aiss.api.resources.comparators.ComparatorNamePlayListReversed;
+import aiss.api.resources.comparators.ComparatorNombreLista;
+import aiss.model.Lista;
 import aiss.model.Playlist;
 import aiss.model.Song;
+import aiss.model.Tarea;
+import aiss.model.repository.ListaRepository;
+import aiss.model.repository.MapListaRepository;
 import aiss.model.repository.MapPlaylistRepository;
 import aiss.model.repository.PlaylistRepository;
 
@@ -39,10 +45,10 @@ public class ListaResource {
 	
 	/* Singleton */
 	private static ListaResource _instance=null;
-	PlaylistRepository repository;
+	ListaRepository repository;
 	
 	private ListaResource() {
-		repository=MapPlaylistRepository.getInstance();
+		repository=MapListaRepository.getInstance();
 
 	}
 	
@@ -56,43 +62,53 @@ public class ListaResource {
 
 	@GET
 	@Produces("application/json")
-	public Collection<Playlist> getAll(@QueryParam("order") String order,@QueryParam("isEmpty") Boolean isEmpty,
-			@QueryParam("name") String name)
-	{
+	public Collection<Lista> getAll(@QueryParam("order") String order,@QueryParam("isEmpty") Boolean isEmpty,
+			@QueryParam("name") String name, @QueryParam("q") String q,@QueryParam("limit") Integer limit,@QueryParam("offset") Integer offset){
 		
-		List<Playlist> result= new ArrayList<Playlist>();
+		List<Lista> result= new ArrayList<Lista>();
 		
+		if(offset==(null) || offset>repository.getAllListas().size()) {
+			offset=0;
+		}
+		if(limit==(null) || limit>repository.getAllListas().size()) {
+			limit=repository.getAllListas().size();
+		}
 		
-		for(Playlist playlist: repository.getAllPlaylists()) {
-			if(name == null || playlist.getName().equals(name)) {
-				if(isEmpty== null
-					|| (isEmpty && (playlist.getSongs() == null || playlist.getSongs().size() == 0))
-					|| (!isEmpty && (playlist.getSongs() != null || playlist.getSongs().size() > 0))){
-					result.add(playlist);
+		int i=0;
+		int j=0;
+		
+		for(Lista lista : repository.getAllListas()) {
+			if(j>=offset && i<limit) {
+				if( q == null || lista.getNombre().contains(q) || lista.getDescripcion().contains(q) ){
+					i++;
+					result.add(lista);
 				}
-			
-		}
-		}
-		
-		if(order!=null) {
-			if(order.equals("name")) {
-				Collections.sort(result, new ComparatorNamePlayList());
-			}else if(order.equals("-name")) {
-				Collections.sort(result, new ComparatorNamePlayListReversed());
-
-			}else {
-				throw new BadRequestException("The order parameter must be a 'name' or '-name'.");
 			}
-			
-		
-		
+			j++;
 		}
 		
+		for(Lista lista: repository.getAllListas()) {
+			if(name == null || lista.getNombre().equals(name)) {
+				if(isEmpty== null
+					|| (isEmpty && (lista.getTareas() == null || lista.getTareas().size() == 0))
+					|| (!isEmpty && (lista.getTareas() != null || lista.getTareas().size() > 0))){
+					result.add(lista);
+				}
+			}
+		}
+
+		if(order!=null) {
+			if(order.equals("nombre")) {
+				Collections.sort(result, new ComparatorNombreLista());
+			}else if(order.equals("fc")) {
+				Collections.sort(result, new ComparatorFechaCreacionLista());
+			}
+			else {
+				throw new BadRequestException("The order parameter must be a 'nombre' or 'fc'.");
+			}
+		}	
 		return result;
 	}
-	
-	
-	
 	
 	@GET
 	@Path("/{id}")
