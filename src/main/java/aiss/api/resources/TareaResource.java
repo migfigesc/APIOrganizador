@@ -21,7 +21,9 @@ import javax.ws.rs.core.UriBuilder;
 
 import aiss.api.resources.comparators.ComparatorCategoriaTarea;
 import aiss.api.resources.comparators.ComparatorFechaCreacionTarea;
+import aiss.api.resources.comparators.ComparatorFechaCreacionTareaReversed;
 import aiss.api.resources.comparators.ComparatorFechaVencimientoTarea;
+import aiss.api.resources.comparators.ComparatorFechaVencimientoTareaReversed;
 import aiss.api.resources.comparators.ComparatorTituloTarea;
 import aiss.model.Tarea;
 import aiss.model.repository.ListaRepository;
@@ -82,8 +84,13 @@ public class TareaResource {
 				Collections.sort(result, new ComparatorTituloTarea());
 			}else if(order.equals("fv")) {
 				Collections.sort(result, new ComparatorFechaVencimientoTarea());
-			}else if(order.equals("fc")) {
+			}else if(order.equals("-fv")) {
+				Collections.sort(result, new ComparatorFechaVencimientoTareaReversed());
+			}
+			else if(order.equals("fc")) {
 				Collections.sort(result, new ComparatorFechaCreacionTarea());
+			}else if(order.equals("-fc")) {
+				Collections.sort(result, new ComparatorFechaCreacionTareaReversed());
 			}else if(order.equals("cat")) {
 				Collections.sort(result, new ComparatorCategoriaTarea());
 			}else {
