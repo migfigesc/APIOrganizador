@@ -1,6 +1,7 @@
 package aiss.model;
 
-import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 public class Tarea {
 	
@@ -9,29 +10,33 @@ public class Tarea {
 	private String descripcion;
 	private String categoria;
 	private Boolean completado;
-	private LocalDate fechaCreacion;
-	private LocalDate fechaVencimiento;
+	private LocalDateTime fechaCreacion;
+	private LocalDateTime fechaVencimiento;
 
 	public Tarea() {
 	}
 
-	public Tarea(String titulo, String descripcion, String categoria, Boolean completado, LocalDate fechaVencimiento) {
+	public Tarea(String titulo, String descripcion, String categoria, Boolean completado, String fechaVencimiento) {
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.categoria = categoria;
 		this.completado = completado;
-		this.fechaCreacion = LocalDate.now();
-		this.fechaVencimiento = fechaVencimiento;
+		this.fechaCreacion = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        LocalDateTime vencimientoFormat = LocalDateTime.parse(fechaVencimiento, formatter);
+		this.fechaVencimiento = vencimientoFormat;
 	}
 	
-	public Tarea(String id, String titulo, String descripcion, String categoria, Boolean completado, LocalDate fechaVencimiento) {
+	public Tarea(String id, String titulo, String descripcion, String categoria, Boolean completado, String fechaVencimiento) {
 		this.id=id;
 		this.titulo = titulo;
 		this.descripcion = descripcion;
 		this.categoria = categoria;
 		this.completado = completado;
-		this.fechaCreacion = LocalDate.now();
-		this.fechaVencimiento = fechaVencimiento;
+		this.fechaCreacion = LocalDateTime.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
+        LocalDateTime vencimientoFormat = LocalDateTime.parse(fechaVencimiento, formatter);
+		this.fechaVencimiento = vencimientoFormat;
 	}
 
 	public String getId() {
@@ -74,19 +79,19 @@ public class Tarea {
 		this.completado = completado;
 	}
 
-	public LocalDate getFechaCreacion() {
+	public LocalDateTime getFechaCreacion() {
 		return fechaCreacion;
 	}
 
-	public void setFechaCreacion(LocalDate fechaCreacion) {
+	public void setFechaCreacion(LocalDateTime fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
 
-	public LocalDate getFechaVencimiento() {
+	public LocalDateTime getFechaVencimiento() {
 		return fechaVencimiento;
 	}
 
-	public void setFechaVencimiento(LocalDate fechaVencimiento) {
+	public void setFechaVencimiento(LocalDateTime fechaVencimiento) {
 		this.fechaVencimiento = fechaVencimiento;
 	}
 

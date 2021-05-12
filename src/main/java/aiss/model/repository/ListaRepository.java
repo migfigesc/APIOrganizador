@@ -9,17 +9,17 @@ public interface ListaRepository {
 	
 	
 	// Songs
-	public void addTarea(Tarea s);
+	public void addTarea(Tarea t);
 	public Collection<Tarea> getAllTareas();
 	public Tarea getTarea(String tareaId);
-	public void updateTarea(Tarea s);
+	public void updateTarea(Tarea t);
 	public void deleteTarea(String tareaId);
 	
 	// Playlists
-	public void addLista(Lista p);
+	public void addLista(Lista l);
 	public Collection<Lista> getAllListas();
 	public Lista getLista(String listaId);
-	public void updateLista(Lista p);
+	public void updateLista(Lista l);
 	public void deleteLista(String listaId);
 	public Collection<Tarea> getAll(String listaId);
 	public void addTarea(String listaId, String tareaId);
