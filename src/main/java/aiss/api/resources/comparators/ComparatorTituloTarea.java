@@ -4,7 +4,7 @@ import java.util.Comparator;
 
 import aiss.model.Tarea;
 
-public class ComparatortituloTarea implements Comparator<Tarea>{
+public class ComparatorTituloTarea implements Comparator<Tarea>{
 	
 	public int compare(Tarea t1, Tarea t2) {
 		// TODO Auto-generated method stub
