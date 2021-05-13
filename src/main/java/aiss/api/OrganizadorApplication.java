@@ -6,8 +6,6 @@ import java.util.Set;
 import javax.ws.rs.core.Application;
 
 import aiss.api.resources.ListaResource;
-import aiss.api.resources.PlaylistResource;
-import aiss.api.resources.SongResource;
 import aiss.api.resources.TareaResource;
 
 public class OrganizadorApplication extends Application {
