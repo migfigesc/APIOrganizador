@@ -116,12 +116,12 @@ public class ListaResource {
 	@GET
 	@Path("/{id}")
 	@Produces("application/json")
-	public Playlist get(@PathParam("id") String id)
+	public Lista get(@PathParam("id") String id)
 	{
-		Playlist list = repository.getPlaylist(id);
+		Lista list = repository.getLista(id);
 		
 		if (list == null) {
-			throw new NotFoundException("The playlist with id="+ id +" was not found");			
+			throw new NotFoundException("No se ha encontrado la lista con id ="+ id);			
 		}
 		
 		return list;
@@ -130,42 +130,50 @@ public class ListaResource {
 	@POST
 	@Consumes("application/json")
 	@Produces("application/json")
-	public Response addPlaylist(@Context UriInfo uriInfo, Playlist playlist) {
-		if (playlist.getName() == null || "".equals(playlist.getName()))
-			throw new BadRequestException("The name of the playlist must not be null");
+	public Response addLista(@Context UriInfo uriInfo, Lista lista) {
+		if (lista.getNombre() == null || "".equals(lista.getNombre()))
+			throw new BadRequestException("El nombre de la lista no puede ser nulo.");
 		
-		if (playlist.getSongs()!=null)
-			throw new BadRequestException("The songs property is not editable.");
+		if (lista.getTareas()!=null)
+			throw new BadRequestException("Las tareas de la lista no se pueden editar.");
 
-		repository.addPlaylist(playlist);
+		repository.addLista(lista);
 
 		// Builds the response. Returns the playlist the has just been added.
 		UriBuilder ub = uriInfo.getAbsolutePathBuilder().path(this.getClass(), "get");
-		URI uri = ub.build(playlist.getId());
+		URI uri = ub.build(lista.getId());
 		ResponseBuilder resp = Response.created(uri);
-		resp.entity(playlist);			
+		resp.entity(lista);			
 		return resp.build();
 	}
 
 	
 	@PUT
 	@Consumes("application/json")
-	public Response updatePlaylist(Playlist playlist) {
-		Playlist oldplaylist = repository.getPlaylist(playlist.getId());
-		if (oldplaylist == null) {
-			throw new NotFoundException("The playlist with id="+ playlist.getId() +" was not found");			
+	public Response updateLista(Lista lista) {
+		Lista oldLista = repository.getLista(lista.getId());
+		if (oldLista == null) {
+			throw new NotFoundException("La lista con id ="+ lista.getId() +" no se ha encontrado.");			
 		}
 		
-		if (playlist.getSongs()!=null)
-			throw new BadRequestException("The songs property is not editable.");
+		if (lista.getTareas()!=null)
+			throw new BadRequestException("Las tareas de la lista no son editables.");
 		
 		// Update name
-		if (playlist.getName()!=null)
-			oldplaylist.setName(playlist.getName());
+		if (lista.getNombre()!=null)
+			oldLista.setNombre(lista.getNombre());
 		
 		// Update description
-		if (playlist.getDescription()!=null)
-			oldplaylist.setDescription(playlist.getDescription());
+		if (lista.getDescripcion()!=null)
+			oldLista.setDescripcion(lista.getDescripcion());
+		
+		//Update completado
+		for(Tarea tarea:lista.getTareas()) {
+			lista.setCompletado(true);
+			if(tarea.getCompletado()==false) {
+				lista.setCompletado(false);
+			}
+		}
 		
 		return Response.noContent().build();
 	}
