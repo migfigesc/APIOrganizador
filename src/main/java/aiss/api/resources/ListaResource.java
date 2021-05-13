@@ -167,7 +167,7 @@ public class ListaResource {
 		if (lista.getDescripcion()!=null)
 			oldLista.setDescripcion(lista.getDescripcion());
 		
-		//Update completado
+		//Update completado - Cada vez que se añade una tarea se comprueba si la lista esta completada
 		for(Tarea tarea:lista.getTareas()) {
 			lista.setCompletado(true);
 			if(tarea.getCompletado()==false) {
@@ -195,7 +195,7 @@ public class ListaResource {
 	@Path("/{listaid}/{tareaid}")
 	@Consumes("text/plain")
 	@Produces("application/json")
-	public Response addSong(@Context UriInfo uriInfo,@PathParam("listaid") String listaid, @PathParam("tareaid") String tareaid)
+	public Response addTarea(@Context UriInfo uriInfo,@PathParam("listaid") String listaid, @PathParam("tareaid") String tareaid)
 	{				
 		
 		Lista lista = repository.getLista(listaid);
@@ -209,6 +209,14 @@ public class ListaResource {
 		
 		if (lista.getTarea(tareaid)!=null)
 			throw new BadRequestException("La tarea ya está incluida en la lista");
+		
+		// Cada vez que se añade una tarea se comprueba si la lista esta completada
+		lista.setCompletado(true);
+		for(Tarea tareaAuxiliar:lista.getTareas()) {
+			if(tareaAuxiliar.getCompletado()==false) {
+				lista.setCompletado(false);
+			}
+		}
 			
 		repository.addTarea(listaid, tareaid);		
 
@@ -223,7 +231,7 @@ public class ListaResource {
 	
 	@DELETE
 	@Path("/{lista}/{tarea}")
-	public Response removeSong(@PathParam("listaid") String listaid, @PathParam("tareaid") String tareaid) {
+	public Response removeTarea(@PathParam("listaid") String listaid, @PathParam("tareaid") String tareaid) {
 		Lista lista = repository.getLista(listaid);
 		Tarea tarea = repository.getTarea(tareaid);
 		
