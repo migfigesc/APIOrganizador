@@ -168,8 +168,8 @@ public class ListaResource {
 			oldLista.setDescripcion(lista.getDescripcion());
 		
 		//Update completado - Cada vez que se añade una tarea se comprueba si la lista esta completada
+		lista.setCompletado(true);
 		for(Tarea tarea:lista.getTareas()) {
-			lista.setCompletado(true);
 			if(tarea.getCompletado()==false) {
 				lista.setCompletado(false);
 			}
