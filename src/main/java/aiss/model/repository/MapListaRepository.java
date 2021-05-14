@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import aiss.model.Lista;
+import aiss.model.Song;
 import aiss.model.Tarea;
 
 
@@ -32,6 +33,13 @@ public class MapListaRepository implements ListaRepository{
 		tareaMap = new HashMap<String,Tarea>();
 		
 		//para crear Lista y Tarea
+		Tarea estudiar=new Tarea();
+		estudiar.setTitulo("Estudiar");
+		estudiar.setDescripcion("Estudiar examenes de la universidad");
+		estudiar.setCategoria("Estudios");
+		estudiar.setCompletado(false);
+//		estudiar.setFechaVencimiento("10-10-2021 19:00");
+		addTarea(estudiar);
 		
 	}
 	
