@@ -1,6 +1,7 @@
 package aiss.api.resources;
 
 import javax.ws.rs.DELETE;
+
 import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
@@ -20,8 +21,7 @@ import javax.ws.rs.core.Response;
 import javax.ws.rs.core.UriBuilder;
 
 import aiss.api.resources.comparators.ComparatorCategoriaTarea;
-import aiss.api.resources.comparators.ComparatorFechaCreacionTarea;
-import aiss.api.resources.comparators.ComparatorFechaCreacionTareaReversed;
+
 import aiss.api.resources.comparators.ComparatorFechaVencimientoTarea;
 import aiss.api.resources.comparators.ComparatorFechaVencimientoTareaReversed;
 import aiss.api.resources.comparators.ComparatorTituloTarea;
@@ -30,6 +30,7 @@ import aiss.model.repository.ListaRepository;
 import aiss.model.repository.MapListaRepository;
 
 import java.net.URI;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -86,11 +87,8 @@ public class TareaResource {
 				Collections.sort(result, new ComparatorFechaVencimientoTarea());
 			}else if(order.equals("-fv")) {
 				Collections.sort(result, new ComparatorFechaVencimientoTareaReversed());
-			}
-			else if(order.equals("fc")) {
-				Collections.sort(result, new ComparatorFechaCreacionTarea());
-			}else if(order.equals("-fc")) {
-				Collections.sort(result, new ComparatorFechaCreacionTareaReversed());
+			
+			
 			}else if(order.equals("cat")) {
 				Collections.sort(result, new ComparatorCategoriaTarea());
 			}else {
@@ -117,6 +115,9 @@ public class TareaResource {
 	@Consumes("application/json")
 	@Produces("application/json")
 	public Response addTarea(@Context UriInfo uriInfo, Tarea tarea) {
+		
+		
+	
 		if (tarea.getTitulo() == null || "".equals(tarea.getTitulo()))
 			throw new BadRequestException("El nombre de la tarea no puede ser nulo.");
 
@@ -155,12 +156,11 @@ public class TareaResource {
 			oldTarea.setCompletado(tarea.getCompletado());
 		
 		//Update FechaCreacion
-		if (tarea.getFechaCreacion()!=null)
-			oldTarea.setFechaCreacion(tarea.getFechaCreacion());
+		
 		
 		//Update FechaVencimiento
 				if (tarea.getFechaVencimiento()!=null)
-					oldTarea.setFechaVencimiento(tarea.getFechaVencimiento());
+					oldTarea.setFechaVencimiento(tarea.getFechaVencimiento().toString());
 		
 		return Response.noContent().build();
 	}

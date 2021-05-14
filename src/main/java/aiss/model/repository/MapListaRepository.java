@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import aiss.model.Lista;
+import aiss.model.Playlist;
 import aiss.model.Song;
 import aiss.model.Tarea;
 
@@ -41,12 +42,26 @@ public class MapListaRepository implements ListaRepository{
 //		estudiar.setFechaVencimiento("10-10-2021 19:00");
 		addTarea(estudiar);
 		
+		
+					// Create playlists
+				
+					
+					
+					
+					
+					Tarea tarea=new Tarea();
+					tarea.setTitulo("Smell Like Teen Spirit");
+//					tarea.setFechaVencimiento("17-05-2020 08:30");
+				
+					addTarea(tarea);
+		
+
 	}
 	
 	// Playlist related operations
 	@Override
 	public void addLista(Lista p) {
-		String id = "p" + index++;	
+		String id = "" + index++;	
 		p.setId(id);
 		listaMap.put(id,p);
 	}
@@ -93,7 +108,7 @@ public class MapListaRepository implements ListaRepository{
 	
 	@Override
 	public void addTarea(Tarea s) {
-		String id = "s" + index++;
+		String id = "" + index++;
 		s.setId(id);
 		tareaMap.put(id, s);
 	}
@@ -115,12 +130,16 @@ public class MapListaRepository implements ListaRepository{
 		tarea.setDescripcion(s.getDescripcion());
 		tarea.setCategoria(s.getCategoria());
 		tarea.setCompletado(s.getCompletado());
-		tarea.setFechaVencimiento(s.getFechaVencimiento());
+		tarea.setFechaVencimiento(s.getFechaVencimiento().toString());
 	}
 
 	@Override
 	public void deleteTarea(String tareaId) {
 		tareaMap.remove(tareaId);
 	}
+	
+	
+	
+
 	
 }

@@ -2,6 +2,7 @@ package aiss.api.resources;
 
 
 import java.net.URI;
+
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
@@ -28,8 +29,7 @@ import javax.ws.rs.core.UriInfo;
 import org.jboss.resteasy.spi.BadRequestException;
 import org.jboss.resteasy.spi.NotFoundException;
 
-import aiss.api.resources.comparators.ComparatorFechaCreacionLista;
-import aiss.api.resources.comparators.ComparatorFechaCreacionListaReversed;
+
 import aiss.api.resources.comparators.ComparatorNombreLista;
 import aiss.model.Lista;
 import aiss.model.Tarea;
@@ -60,7 +60,7 @@ public class ListaResource {
 	@GET
 	@Produces("application/json")
 	public Collection<Lista> getAll(@QueryParam("order") String order,@QueryParam("isEmpty") Boolean isEmpty,
-			@QueryParam("name") String name, @QueryParam("q") String q,@QueryParam("limit") Integer limit,@QueryParam("offset") Integer offset){
+			@QueryParam("name") String name,@QueryParam("limit") Integer limit,@QueryParam("offset") Integer offset){
 		
 		List<Lista> result= new ArrayList<Lista>();
 		
@@ -74,35 +74,28 @@ public class ListaResource {
 		int i=0;
 		int j=0;
 		
-		for(Lista lista : repository.getAllListas()) {
+		
+		
+		for(Lista lista: repository.getAllListas()) {
 			if(j>=offset && i<limit) {
-				if( q == null || lista.getNombre().contains(q) || lista.getDescripcion().contains(q) ){
-					i++;
-					result.add(lista);
+
+				if(name == null || lista.getNombre().contains(name) ) {
+					if(isEmpty== null
+						|| (isEmpty && (lista.getTareas() == null || lista.getTareas().size() == 0))
+						|| (!isEmpty && (lista.getTareas() != null || lista.getTareas().size() > 0))){
+						i++;
+						result.add(lista);
+					}
 				}
 			}
 			j++;
-		}
-		
-		for(Lista lista: repository.getAllListas()) {
-			if(name == null || lista.getNombre().equals(name)) {
-				if(isEmpty== null
-					|| (isEmpty && (lista.getTareas() == null || lista.getTareas().size() == 0))
-					|| (!isEmpty && (lista.getTareas() != null || lista.getTareas().size() > 0))){
-					result.add(lista);
-				}
-			}
 		}
 
 		if(order!=null) {
 			if(order.equals("nombre")) {
 				Collections.sort(result, new ComparatorNombreLista());
-			}else if(order.equals("fc")) {
-				Collections.sort(result, new ComparatorFechaCreacionLista());
-			}else if(order.equals("-fc")) {
-				Collections.sort(result, new ComparatorFechaCreacionListaReversed());
-			}
-			else {
+			
+			}else {
 				throw new BadRequestException("El parámetro para ordenar debe ser 'nombre' o 'fc'.");
 			}
 		}	
@@ -130,6 +123,8 @@ public class ListaResource {
 	@Produces("application/json")
 
 	public Response addLista(@Context UriInfo uriInfo, Lista lista) {
+		
+	
 
 		if (lista.getNombre() == null || "".equals(lista.getNombre()))
 
@@ -137,10 +132,10 @@ public class ListaResource {
 
 		
 
-		if (lista.getTareas()!=null)
-
-			throw new BadRequestException("Las tareas de la lista no se pueden editar.");
-
+//		if (lista.getTareas()!=null)
+//
+//			throw new BadRequestException("Las tareas de la lista no se pueden editar.");
+//
 
 
 		repository.addLista(lista);
@@ -182,13 +177,13 @@ public class ListaResource {
 			oldLista.setDescripcion(lista.getDescripcion());
 		
 		//Update completado - Cada vez que se añade una tarea se comprueba si la lista esta completada
-		lista.setCompletado(true);
-		for(Tarea tarea:lista.getTareas()) {
-			if(tarea.getCompletado()==false) {
-				lista.setCompletado(false);
-			}
-		}
-		
+//		lista.setCompletado(true);
+//		for(Tarea tarea:lista.getTareas()) {
+//			if(tarea.getCompletado()==false) {
+//				lista.setCompletado(false);
+//			}
+//		}
+//		
 		return Response.noContent().build();
 	}
 	
@@ -225,13 +220,13 @@ public class ListaResource {
 			throw new BadRequestException("La tarea ya está incluida en la lista");
 		
 		// Cada vez que se añade una tarea se comprueba si la lista esta completada
-		lista.setCompletado(true);
-		for(Tarea tareaAuxiliar:lista.getTareas()) {
-			if(tareaAuxiliar.getCompletado()==false) {
-				lista.setCompletado(false);
-			}
-		}
-			
+//		lista.setCompletado(true);
+//		for(Tarea tareaAuxiliar:lista.getTareas()) {
+//			if(tareaAuxiliar.getCompletado()==false) {
+//				lista.setCompletado(false);
+//			}
+//		}
+//			
 		repository.addTarea(listaid, tareaid);		
 
 		// Builds the response

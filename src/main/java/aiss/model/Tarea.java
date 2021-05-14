@@ -1,7 +1,7 @@
 package aiss.model;
 
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
+import java.time.LocalDate;
+
 
 public class Tarea {
 	
@@ -10,8 +10,7 @@ public class Tarea {
 	private String descripcion;
 	private String categoria;
 	private Boolean completado;
-	private LocalDateTime fechaCreacion;
-	private LocalDateTime fechaVencimiento;
+	private String fechaVencimiento;
 
 	public Tarea() {
 	}
@@ -20,10 +19,8 @@ public class Tarea {
 		this.titulo = titulo;
 		this.categoria = categoria;
 		this.completado = false;
-		this.fechaCreacion = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        LocalDateTime vencimientoFormat = LocalDateTime.parse(fechaVencimiento, formatter);
-		this.fechaVencimiento = vencimientoFormat;
+      
+		this.fechaVencimiento = fechaVencimiento;
 	}
 	
 	public Tarea(String id, String titulo, String categoria, String fechaVencimiento) {
@@ -31,10 +28,9 @@ public class Tarea {
 		this.titulo = titulo;
 		this.categoria = categoria;
 		this.completado = false;
-		this.fechaCreacion = LocalDateTime.now();
-        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd-MM-yyyy HH:mm");
-        LocalDateTime vencimientoFormat = LocalDateTime.parse(fechaVencimiento, formatter);
-		this.fechaVencimiento = vencimientoFormat;
+
+     
+		this.fechaVencimiento = fechaVencimiento;
 	}
 
 	public String getId() {
@@ -77,19 +73,14 @@ public class Tarea {
 		this.completado = completado;
 	}
 
-	public LocalDateTime getFechaCreacion() {
-		return fechaCreacion;
-	}
 
-	public void setFechaCreacion(LocalDateTime fechaCreacion) {
-		this.fechaCreacion = fechaCreacion;
-	}
 
-	public LocalDateTime getFechaVencimiento() {
+	public String getFechaVencimiento() {
 		return fechaVencimiento;
 	}
 
-	public void setFechaVencimiento(LocalDateTime fechaVencimiento) {
+	public void setFechaVencimiento(String fechaVencimiento) {
+	
 		this.fechaVencimiento = fechaVencimiento;
 	}
 
