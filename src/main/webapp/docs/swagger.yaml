@@ -1,43 +1,40 @@
 openapi: 3.0.0
-servers:
-- url: 'https://localhost:8089/api'
-  description: New server created
+servers: 
+  - url: 'http://localhost:8089/api'
 info:
-  description: This is a simple API - AISS
+  description: Modify this information
   version: 1.0.0
-  title: "Playlist_Music_API_AISS "
+  title: organizador_AISS
   contact:
     email: you@your-company.com
   license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 tags:
-  - name: songs
-    description: Songs
-  - name: lists
-    description: Playlists
+  - name: tareas
+    description: tareas
+  - name: listas
+    description: listas
 paths:
-  /songs:
+  /tareas:
     get:
       tags:
-        - songs
-      summary: Get songs
-      description: Get all songs
-      operationId: getSongs
+        - tareas
+      summary: Get tareas
+      description: Get all tareas
+      operationId: gettareas
       parameters:
         - name: order
           in: query
-          description: Order results by album, artist or year
+          description: Order results by titulo or fechaVencimiento
           required: false
           schema:
             type: string
             enum:
-              - album
-              - '-album'
-              - artist
-              - '-artist'
-              - year
-              - '-year'
+              - titulo
+              - '-titulo'
+              - fv
+              - '-fv'
         - name: q
           in: query
           description: Query to filter
@@ -66,231 +63,111 @@ paths:
           content:
             application/json:
               schema:
-                $ref: '#/components/schemas/Song'
+                type: array
+                items:
+                  $ref: '#/components/schemas/tarea'
         '400':
           description: Bad request
     post:
       tags:
-        - songs
-      summary: Create a song
-      description: Create a song
-      operationId: createSong
+        - tareas
+      summary: Create a tarea
+      description: Create a tarea
+      operationId: createtarea
       requestBody:
         content:
           application/json:
             schema:
               type: object
               required:
-                - title
+                - titulo
               properties:
                 id:
                   type: string
-                title:
+                titulo:
                   type: string
-                artist:
+                descripcion:
                   type: string
-                album:
+                categoria:
                   type: string
-                year:
+                completado:
                   type: string
               example:
-                id: s1
-                title: Rolling in the Deep
-                artist: Adele
-                album: '21'
-                year: '2011'
-        description: Song to create
+                  id: '01'
+                  titulo: Hacer parte de integración proyecto AISS
+                  descripcion: Buscar proyecto para integrar
+                  categoria: Universidad
+                  completado: true
+                  fechaVencimiento: '2021-05-17'
+        description: tarea to create
         required: true
       responses:
         '201':
-          description: Song created
+          description: tarea created
           content:
             application/json:
               schema:
-                type: object
-                required:
-                  - title
-                properties:
-                  id:
-                    type: string
-                  title:
-                    type: string
-                  artist:
-                    type: string
-                  album:
-                    type: string
-                  year:
-                    type: string
-                example:
-                  id: s1
-                  title: Rolling in the Deep
-                  artist: Adele
-                  album: '21'
-                  year: '2011'
+                type: array
+                items:
+                  $ref: '#/components/schemas/tarea'
         '400':
           description: Bad request
-    
-  '/songs/{id}':
-    delete:
-      tags:
-        - songs
-      summary: Delete song
-      description: Delete song
-      operationId: deleteSong
-      parameters:
-        - name: id
-          in: path
-          description: Id of the song
-          required: true
-          schema:
-            type: string
-      responses:
-        '204':
-          description: Song deleted
-        '404':
-          description: Song not found
     put:
       tags:
-        - songs
-      summary: Update a song
-      description: Update a song
-      operationId: updateSong
-      parameters:
-        - name: id
-          in: path
-          description: Id of the song
-          required: true
-          schema:
-            type: string
-      
+        - tareas
+      summary: Update a tarea
+      description: Change a tarea
+      operationId: changetarea
       requestBody:
         content:
           application/json:
             schema:
+              type: object
               required:
-                - name
+                - titulo
               properties:
                 id:
                   type: string
-                name:
+                titulo:
                   type: string
-                description:
+                descripcion:
                   type: string
-                songs:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                      - title
-                    properties:
-                      id:
-                        type: string
-                      title:
-                        type: string
-                      artist:
-                        type: string
-                      album:
-                        type: string
-                      year:
-                        type: string
+                categoria:
+                  type: string
+                completado:
+                  type: string
               example:
-                id: s1
-                title: Rolling in the Deep
-                artist: Adele
-                album: '21'
-                year: '2011'
-        description: Song to update
+                  id: '01'
+                  titulo: Hacer parte de integración proyecto AISS
+                  descripcion: Buscar proyecto para integrar
+                  categoria: Universidad
+                  completado: true
+                  fechaVencimiento: '2021-05-17'
+        description: tarea to update
+        required: true
       responses:
-        '204':
-          description: Song updated
-        '400':
-          description: Bad request
-        '404':
-          description: Song not found
-    get:
-      tags:
-        - songs
-      summary: Get a song
-      description: Get a song
-      operationId: getSong
-      parameters:
-        - name: id
-          in: path
-          description: Id of the song
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: Song found
+        '201':
+          description: tarea created
           content:
             application/json:
               schema:
-                required:
-                  - name
-                properties:
-                  id:
-                    type: string
-                  name:
-                    type: string
-                  description:
-                    type: string
-                  songs:
-                    type: array
-                    items:
-                      type: object
-                      required:
-                        - title
-                      properties:
-                        id:
-                          type: string
-                        title:
-                          type: string
-                        artist:
-                          type: string
-                        album:
-                          type: string
-                        year:
-                          type: string
-                example:
-                  id: p5
-                  name: Favourites
-                  description: My favourite songs
-                  songs:
-                   id: s1
-                  title: Rolling in the Deep
-                  artist: Adele
-                  album: '21'
-                  year: '2011'
-        '404':
-          description: Playlist not found
-  /lists:
+                type: array
+                items:
+                  $ref: '#/components/schemas/tarea'
+        '400':
+          description: Bad request
+  '/tareas/{id}':
     get:
       tags:
-        - lists
-      summary: Get playlists
-      description: Get all playlists
-      operationId: getPlaylists
+        - tareas
+      summary: Get id tareas
+      description: Get id tareas
+      operationId: gettareasId
       parameters:
-        - name: order
-          in: query
-          description: Order results by name
-          required: false
-          schema:
-            type: string
-            enum:
-              - name
-              - '-name'
-        - name: isEmpty
-          in: query
-          description: Filter playlists with no songs
-          required: false
-          schema:
-            type: boolean
-        - name: name
-          in: query
-          description: Filter playlists by name
-          required: false
+        - name: id
+          in: path
+          description: Id of the tarea
+          required: true
           schema:
             type: string
       responses:
@@ -301,385 +178,278 @@ paths:
               schema:
                 type: array
                 items:
-                  type: object
-                  required:
-                    - name
-                  properties:
-                    id:
-                      type: string
-                    name:
-                      type: string
-                    description:
-                      type: string
-                    songs:
-                      type: array
-                      items:
-                        type: object
-                        required:
-                          - title
-                        properties:
-                          id:
-                            type: string
-                          title:
-                            type: string
-                          artist:
-                            type: string
-                          album:
-                            type: string
-                          year:
-                            type: string
-                  example:
-                    id: p5
-                    name: Favourites
-                    description: My favourite songs
-                    songs:
-                      - id: s1
-                        title: Rolling in the Deep
-                        artist: Adele
-                        album: '21'
-                        year: '2011'
+                  $ref: '#/components/schemas/tarea'
+        '400':
+          description: Bad request
+    delete:
+      tags:
+        - tareas
+      summary: Delete tarea
+      description: Delete tarea
+      operationId: deletetarea
+      parameters:
+        - name: id
+          in: path
+          description: Id of the tarea
+          required: true
+          schema:
+            type: string
+      responses:
+        '204':
+          description: tarea deleted
+        '404':
+          description: tarea not found
+  /listas:
+    get:
+      tags:
+        - listas
+      summary: Get listas
+      description: Get all listas
+      operationId: getlistas
+      parameters:
+        - name: order
+          in: query
+          description: Order results by titulo
+          required: false
+          schema:
+            type: string
+            enum:
+              - titulo
+              - '-titulo'
+        - name: isEmpty
+          in: query
+          description: Filter listas with no tareas
+          required: false
+          schema:
+            type: boolean
+        - name: name
+          in: query
+          description: Filter listas by name
+          required: false
+          schema:
+            type: array
+            items:
+              $ref: '#/components/schemas/lista'
+        - name: limit
+          in: query
+          description:  Maximum number of results
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 0
+        - name: offset
+          in: query
+          description: Offset of the results
+          required: false
+          schema:
+            type: integer
+            format: int32
+            minimum: 0      
+        
+      responses:
+        '200':
+          description: Search results matching criteria
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/lista'
+        '400':
+          description: Bad request
+    post:
+      tags:
+        - listas
+      summary: Create a list
+      description: Create a list
+      operationId: createList
+      requestBody:
+        content:
+          application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/lista'
+        description: lista to create
+      responses:
+        '204':
+          description: lista created
         '400':
           description: Bad request
     put:
       tags:
-        - lists
-      summary: Update a playlist
-      description: Update a playlist
-      operationId: updatePlaylist
+        - listas
+      summary: Update a lista
+      description: Update a lista
+      operationId: updatelista
       requestBody:
         content:
           application/json:
-            schema:
-              required:
-                - name
-              properties:
-                id:
-                  type: string
-                name:
-                  type: string
-                description:
-                  type: string
-                songs:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                      - title
-                    properties:
-                      id:
-                        type: string
-                      title:
-                        type: string
-                      artist:
-                        type: string
-                      album:
-                        type: string
-                      year:
-                        type: string
-              example:
-                id: p5
-                name: Favourites
-                description: My favourite songs
-                songs:
-                  - id: s1
-                    title: Rolling in the Deep
-                    artist: Adele
-                    album: '21'
-                    year: '2011'
-        description: Playlist to update
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/lista'
+        description: lista to update
       responses:
         '204':
-          description: Playlist updated
+          description: lista updated
         '400':
           description: Bad request
         '404':
-          description: Playlist not found
-    post:
-      tags:
-        - lists
-      summary: Create a playlist
-      description: Create a playlist
-      operationId: createPlaylist
-      requestBody:
-        content:
-          application/json:
-            schema:
-              required:
-                - name
-              properties:
-                id:
-                  type: string
-                name:
-                  type: string
-                description:
-                  type: string
-                songs:
-                  type: array
-                  items:
-                    type: object
-                    required:
-                      - title
-                    properties:
-                      id:
-                        type: string
-                      title:
-                        type: string
-                      artist:
-                        type: string
-                      album:
-                        type: string
-                      year:
-                        type: string
-              example:
-                id: p5
-                name: Favourites
-                description: My favourite songs
-                songs:
-                  - id: s1
-                    title: Rolling in the Deep
-                    artist: Adele
-                    album: '21'
-                    year: '2011'
-        description: Song to create
-        required: true
-      responses:
-        '201':
-          description: Song created
-          content:
-            application/json:
-              schema:
-                required:
-                  - name
-                properties:
-                  id:
-                    type: string
-                  name:
-                    type: string
-                  description:
-                    type: string
-                  songs:
-                    type: array
-                    items:
-                      type: object
-                      required:
-                        - title
-                      properties:
-                        id:
-                          type: string
-                        title:
-                          type: string
-                        artist:
-                          type: string
-                        album:
-                          type: string
-                        year:
-                          type: string
-                example:
-                  id: p5
-                  name: Favourites
-                  description: My favourite songs
-                  songs:
-                    - id: s1
-                      title: Rolling in the Deep
-                      artist: Adele
-                      album: '21'
-                      year: '2011'
-        '400':
-          description: Bad request
-  '/lists/{id}':
+          description: lista not found
+  '/listas/{id}':
     get:
       tags:
-        - lists
-      summary: Get a playlist
-      description: Get a playlist
-      operationId: getPlaylist
+        - listas
+      summary: Get a lista
+      description: Get a lista
+      operationId: getlista
       parameters:
         - name: id
           in: path
-          description: Id of the playlist
+          description: Id of the lista
           required: true
           schema:
             type: string
       responses:
         '200':
-          description: Playlist found
+          description: lista found
           content:
             application/json:
-              schema:
-                required:
-                  - name
-                properties:
-                  id:
-                    type: string
-                  name:
-                    type: string
-                  description:
-                    type: string
-                  songs:
-                    type: array
-                    items:
-                      type: object
-                      required:
-                        - title
-                      properties:
-                        id:
-                          type: string
-                        title:
-                          type: string
-                        artist:
-                          type: string
-                        album:
-                          type: string
-                        year:
-                          type: string
-                example:
-                  id: p5
-                  name: Favourites
-                  description: My favourite songs
-                  songs:
-                    - id: s1
-                      title: Rolling in the Deep
-                      artist: Adele
-                      album: '21'
-                      year: '2011'
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/lista'
         '404':
-          description: Playlist not found
+          description: lista not found
     delete:
       tags:
-        - lists
-      summary: Delete playlist
-      description: Delete playlist
-      operationId: deletePlaylist
+        - listas
+      summary: Delete List
+      description: Delete List
+      operationId: deleteList
       parameters:
         - name: id
           in: path
-          description: Id of the playlist
+          description: Id of the list
           required: true
           schema:
             type: string
       responses:
         '204':
-          description: playlist deleted
+          description: List deleted
         '404':
-          description: playlist not found
-    
-  '/lists/{playlistId}/{songId}':
+          description: List not found
+  '/listas/{listaId}/{tareaId}':
     post:
       tags:
-        - lists
-      summary: Add song to playlist
-      description: Add song to playlist
-      operationId: addSongToPlaylist
+        - listas
+      summary: Add tarea to lista
+      description: Add tarea to lista
+      operationId: addtareaTolista
       requestBody:
         content:
           text/plain:
             schema:
               type: string
       parameters:
-        - name: playlistId
+        - name: listaId
           in: path
-          description: Id of the playlist
+          description: Id of the lista
           required: true
           schema:
             type: string
-        - name: songId
+        - name: tareaId
           in: path
-          description: Id of the song
+          description: Id of the tarea
           required: true
           schema:
             type: string
       responses:
         '201':
-          description: Song added to playlist
+          description: tarea added to lista
           content:
             application/json:
-              schema:
-                required:
-                  - name
-                properties:
-                  id:
-                    type: string
-                  name:
-                    type: string
-                  description:
-                    type: string
-                  songs:
-                    type: array
-                    items:
-                      type: object
-                      required:
-                        - title
-                      properties:
-                        id:
-                          type: string
-                        title:
-                          type: string
-                        artist:
-                          type: string
-                        album:
-                          type: string
-                        year:
-                          type: string
-                example:
-                  id: p5
-                  name: Favourites
-                  description: My favourite songs
-                  songs:
-                    - id: s1
-                      title: Rolling in the Deep
-                      artist: Adele
-                      album: '21'
-                      year: '2011'
+                schema:
+                  type: array
+                  items:
+                    $ref: '#/components/schemas/lista'
         '400':
           description: Bad request
         '404':
-          description: Playlist or song not found
+          description: lista or tarea not found
     delete:
       tags:
-        - lists
-      summary: Delete song from playlist
-      description: Delete song from playlist
-      operationId: deleteSongFromPlayist
+        - listas
+      summary: Delete tarea from lista
+      description: Delete tarea from lista
+      operationId: deletetareaFromPlayist
       parameters:
-        - name: playlistId
+        - name: listaId
           in: path
-          description: Id of the playlist
+          description: Id of the lista
           required: true
           schema:
             type: string
-        - name: songId
+        - name: tareaId
           in: path
-          description: Id of the song
+          description: Id of the tarea
           required: true
           schema:
             type: string
       responses:
         '204':
-          description: Song deleted from playlist
+          description: tarea deleted from lista
         '404':
-          description: Playlist or song not found
+          description: lista or tarea not found
 components:
   schemas:
-    Song:
-      type: array
-      items:
-        type: object
-        required:
-          - title
-        properties:
-          id:
-            type: string
-          title:
-            type: string
-          artist:
-            type: string
-          album:
-            type: string
-          year:
-            type: string
-        example:
-          id: s1
-          title: Rolling in the Deep
-          artist: Adele
-          album: '21'
-          year: '2011'
+    tarea:
+      required: 
+        - titulo
+      properties:
+        id:
+          type: string
+        titulo:
+          type: string
+        descripcion:
+          type: string
+        categoria:
+          type: string
+        completado:
+          type: boolean
+        fechaVencimiento:
+          type: string
+      example:
+          id: '01'
+          titulo: Hacer parte de integración proyecto AISS
+          descripcion: Buscar proyecto para integrar
+          categoria: Universidad
+          completado: true
+          fechaVencimiento: '2021-05-17'
+    lista:
+      required: 
+        - titulo
+      properties:
+        id:
+          type: string
+        titulo:
+          type: string
+        descripcion:
+          type: string
+        tareas:
+          type: array
+          items: 
+            $ref: '#/components/schemas/tarea'
+      example:
+        id: '01'
+        titulo: Proyectos universidad
+        description: Proyectos de las asignaturas de la universidad
+        tareas:
+             - id: '01'
+               titulo: Hacer parte de integración proyecto AISS
+               descripcion: Buscar proyecto para integrar
+               categoria: Universidad
+               completado: true
+               fechaVencimiento: '2021-05-17'
