@@ -231,7 +231,7 @@ public class ListaResource {
 //				lista.setCompletado(false);
 //			}
 //		}
-//			
+			
 		repository.addTarea(listaid, tareaid);		
 
 		// Builds the response
@@ -244,7 +244,7 @@ public class ListaResource {
 	
 	
 	@DELETE
-	@Path("/{lista}/{tarea}")
+	@Path("/{listaid}/{tareaid}")
 	public Response removeTarea(@PathParam("listaid") String listaid, @PathParam("tareaid") String tareaid) {
 		Lista lista = repository.getLista(listaid);
 		Tarea tarea = repository.getTarea(tareaid);
