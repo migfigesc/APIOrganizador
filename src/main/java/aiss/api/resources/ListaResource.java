@@ -124,40 +124,41 @@ public class ListaResource {
 	}
 	
 	@POST
+
 	@Consumes("application/json")
+
 	@Produces("application/json")
+
 	public Response addLista(@Context UriInfo uriInfo, Lista lista) {
-		
-		
-		
-		if(lista.getFechaCreacion().equals(null)) {
-			
-	;
 
-			   
-
-			
-			
-			lista.setFechaCreacion( LocalDateTime.now().toString());
-		}
-		
-		if(lista.getCompletado().equals(null)) {
-			lista.setCompletado(false);
-		}
 		if (lista.getNombre() == null || "".equals(lista.getNombre()))
+
 			throw new BadRequestException("El nombre de la lista no puede ser nulo.");
+
 		
+
 		if (lista.getTareas()!=null)
+
 			throw new BadRequestException("Las tareas de la lista no se pueden editar.");
+
+
 
 		repository.addLista(lista);
 
+
+
 		// Builds the response. Returns the playlist the has just been added.
+
 		UriBuilder ub = uriInfo.getAbsolutePathBuilder().path(this.getClass(), "get");
+
 		URI uri = ub.build(lista.getId());
+
 		ResponseBuilder resp = Response.created(uri);
+
 		resp.entity(lista);			
+
 		return resp.build();
+
 	}
 
 	
