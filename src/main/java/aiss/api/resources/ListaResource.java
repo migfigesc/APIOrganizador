@@ -30,7 +30,7 @@ import org.jboss.resteasy.spi.BadRequestException;
 import org.jboss.resteasy.spi.NotFoundException;
 
 
-import aiss.api.resources.comparators.ComparatorNombreLista;
+import aiss.api.resources.comparators.ComparatorTituloLista;
 import aiss.model.Lista;
 import aiss.model.Tarea;
 import aiss.model.repository.ListaRepository;
@@ -79,7 +79,7 @@ public class ListaResource {
 		for(Lista lista: repository.getAllListas()) {
 			if(j>=offset && i<limit) {
 
-				if(name == null || lista.getNombre().contains(name) ) {
+				if(name == null || lista.getTitulo().contains(name) ) {
 					if(isEmpty== null
 						|| (isEmpty && (lista.getTareas() == null || lista.getTareas().size() == 0))
 						|| (!isEmpty && (lista.getTareas() != null || lista.getTareas().size() > 0))){
@@ -92,11 +92,11 @@ public class ListaResource {
 		}
 
 		if(order!=null) {
-			if(order.equals("nombre")) {
-				Collections.sort(result, new ComparatorNombreLista());
+			if(order.equals("Titulo")) {
+				Collections.sort(result, new ComparatorTituloLista());
 			
 			}else {
-				throw new BadRequestException("El parámetro para ordenar debe ser 'nombre' o 'fc'.");
+				throw new BadRequestException("El parámetro para ordenar debe ser 'Titulo' o 'fc'.");
 			}
 		}	
 		return result;
@@ -126,9 +126,9 @@ public class ListaResource {
 		
 	
 
-		if (lista.getNombre() == null || "".equals(lista.getNombre()))
+		if (lista.getTitulo() == null || "".equals(lista.getTitulo()))
 
-			throw new BadRequestException("El nombre de la lista no puede ser nulo.");
+			throw new BadRequestException("El Titulo de la lista no puede ser nulo.");
 
 		
 
@@ -169,8 +169,8 @@ public class ListaResource {
 			throw new BadRequestException("Las tareas de la lista no son editables.");
 		
 		// Update name
-		if (lista.getNombre()!=null)
-			oldLista.setNombre(lista.getNombre());
+		if (lista.getTitulo()!=null)
+			oldLista.setTitulo(lista.getTitulo());
 		
 		// Update description
 		if (lista.getDescripcion()!=null)
