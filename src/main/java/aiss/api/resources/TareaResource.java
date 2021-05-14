@@ -36,7 +36,7 @@ import java.util.Collections;
 import java.util.List;
 
 
-@Path("/songs")
+@Path("/tarea")
 public class TareaResource {
 
 	public static TareaResource _instance=null;
