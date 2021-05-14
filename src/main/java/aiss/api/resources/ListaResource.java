@@ -5,7 +5,6 @@ import java.net.URI;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
-import java.util.Comparator;
 import java.util.List;
 
 import javax.ws.rs.Consumes;
@@ -14,31 +13,25 @@ import javax.ws.rs.GET;
 import javax.ws.rs.POST;
 import javax.ws.rs.PUT;
 import javax.ws.rs.Path;
+import javax.ws.rs.PathParam;
 import javax.ws.rs.Produces;
 import javax.ws.rs.QueryParam;
-import javax.ws.rs.PathParam;
 import javax.ws.rs.core.Context;
 import javax.ws.rs.core.Response;
+import javax.ws.rs.core.Response.ResponseBuilder;
 import javax.ws.rs.core.UriBuilder;
 import javax.ws.rs.core.UriInfo;
-import javax.ws.rs.core.Response.ResponseBuilder;
 
 import org.jboss.resteasy.spi.BadRequestException;
 import org.jboss.resteasy.spi.NotFoundException;
 
 import aiss.api.resources.comparators.ComparatorFechaCreacionLista;
 import aiss.api.resources.comparators.ComparatorFechaCreacionListaReversed;
-import aiss.api.resources.comparators.ComparatorNamePlayList;
-import aiss.api.resources.comparators.ComparatorNamePlayListReversed;
 import aiss.api.resources.comparators.ComparatorNombreLista;
 import aiss.model.Lista;
-import aiss.model.Playlist;
-import aiss.model.Song;
 import aiss.model.Tarea;
 import aiss.model.repository.ListaRepository;
 import aiss.model.repository.MapListaRepository;
-import aiss.model.repository.MapPlaylistRepository;
-import aiss.model.repository.PlaylistRepository;
 
 
 @Path("/listas")
