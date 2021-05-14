@@ -1,6 +1,8 @@
 package aiss.model;
 
 import java.time.LocalDateTime;
+
+
 import java.util.ArrayList;
 import java.util.List;
 
@@ -10,15 +12,16 @@ public class Lista {
 	private String nombre;
 	private String descripcion;
 	private Boolean completado;
-	private LocalDateTime fechaCreacion;
+	private String fechaCreacion;
 	private List<Tarea> tareas;
 
 	public Lista() {}
 
 	public Lista(String nombre) {
 		this.nombre = nombre;
-		this.completado = false;
-		this.fechaCreacion = LocalDateTime.now();
+
+	
+	
 	}
 
 	public String getId() {
@@ -53,11 +56,11 @@ public class Lista {
 		this.completado = completado;
 	}
 
-	public LocalDateTime getFechaCreacion() {
+	public String getFechaCreacion() {
 		return fechaCreacion;
 	}
 
-	public void setFechaCreacion(LocalDateTime fechaCreacion) {
+	public void setFechaCreacion(String fechaCreacion) {
 		this.fechaCreacion = fechaCreacion;
 	}
 

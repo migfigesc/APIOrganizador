@@ -2,6 +2,9 @@ package aiss.api.resources;
 
 
 import java.net.URI;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -124,6 +127,23 @@ public class ListaResource {
 	@Consumes("application/json")
 	@Produces("application/json")
 	public Response addLista(@Context UriInfo uriInfo, Lista lista) {
+		
+		
+		
+		if(lista.getFechaCreacion().equals(null)) {
+			
+	;
+
+			   
+
+			
+			
+			lista.setFechaCreacion( LocalDateTime.now().toString());
+		}
+		
+		if(lista.getCompletado().equals(null)) {
+			lista.setCompletado(false);
+		}
 		if (lista.getNombre() == null || "".equals(lista.getNombre()))
 			throw new BadRequestException("El nombre de la lista no puede ser nulo.");
 		
