@@ -10,8 +10,6 @@ import aiss.api.resources.TareaResource;
 
 public class OrganizadorApplication extends Application {
 	
-
-
 	private Set<Object> singletons = new HashSet<Object>();
 	private Set<Class<?>> classes = new HashSet<Class<?>>();
 

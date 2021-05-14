@@ -2,9 +2,7 @@ package aiss.model;
 
 
 
-import java.time.LocalDateTime;
 import java.util.ArrayList;
-
 import java.util.List;
 
 
@@ -15,7 +13,7 @@ public class Lista {
 
 	private String id;
 
-	private String titulo;
+	private String nombre;
 
 	private String descripcion;
 
@@ -30,9 +28,9 @@ public class Lista {
 
 
 
-	public Lista(String titulo) {
+	public Lista(String nombre) {
 
-		this.titulo = titulo;
+		this.nombre = nombre;
 
 
 
@@ -60,17 +58,17 @@ public class Lista {
 
 
 
-	public String getTitulo() {
+	public String getNombre() {
 
-		return titulo;
+		return nombre;
 
 	}
 
 
 
-	public void setTitulo(String titulo) {
+	public void setNombre(String nombre) {
 
-		this.titulo = titulo;
+		this.nombre = nombre;
 
 	}
 

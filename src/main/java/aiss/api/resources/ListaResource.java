@@ -2,10 +2,6 @@ package aiss.api.resources;
 
 
 import java.net.URI;
-
-import java.time.LocalDate;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -28,7 +24,6 @@ import javax.ws.rs.core.UriInfo;
 
 import org.jboss.resteasy.spi.BadRequestException;
 import org.jboss.resteasy.spi.NotFoundException;
-
 
 import aiss.api.resources.comparators.ComparatorTituloLista;
 import aiss.api.resources.comparators.ComparatorTituloListaReversed;
@@ -80,7 +75,7 @@ public class ListaResource {
 		for(Lista lista: repository.getAllListas()) {
 			if(j>=offset && i<limit) {
 
-				if(name == null || lista.getTitulo().contains(name) ) {
+				if(name == null || lista.getNombre().contains(name) ) {
 					if(isEmpty== null
 						|| (isEmpty && (lista.getTareas() == null || lista.getTareas().size() == 0))
 						|| (!isEmpty && (lista.getTareas() != null || lista.getTareas().size() > 0))){
@@ -131,7 +126,7 @@ public class ListaResource {
 		
 	
 
-		if (lista.getTitulo() == null || "".equals(lista.getTitulo()))
+		if (lista.getNombre() == null || "".equals(lista.getNombre()))
 
 			throw new BadRequestException("El Titulo de la lista no puede ser nulo.");
 
@@ -174,8 +169,8 @@ public class ListaResource {
 			throw new BadRequestException("Las tareas de la lista no son editables.");
 		
 		// Update name
-		if (lista.getTitulo()!=null)
-			oldLista.setTitulo(lista.getTitulo());
+		if (lista.getNombre()!=null)
+			oldLista.setNombre(lista.getNombre());
 		
 		// Update description
 		if (lista.getDescripcion()!=null)
