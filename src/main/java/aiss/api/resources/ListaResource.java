@@ -132,10 +132,10 @@ public class ListaResource {
 
 		
 
-//		if (lista.getTareas()!=null)
-//
-//			throw new BadRequestException("Las tareas de la lista no se pueden editar.");
-//
+		if (lista.getTareas()!=null)
+
+			throw new BadRequestException("Las tareas de la lista no se pueden editar.");
+
 
 
 		repository.addLista(lista);
