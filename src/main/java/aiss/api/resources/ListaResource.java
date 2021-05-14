@@ -31,6 +31,7 @@ import org.jboss.resteasy.spi.NotFoundException;
 
 
 import aiss.api.resources.comparators.ComparatorTituloLista;
+import aiss.api.resources.comparators.ComparatorTituloListaReversed;
 import aiss.model.Lista;
 import aiss.model.Tarea;
 import aiss.model.repository.ListaRepository;
@@ -92,8 +93,12 @@ public class ListaResource {
 		}
 
 		if(order!=null) {
-			if(order.equals("Titulo")) {
+			if(order.equals("titulo")) {
 				Collections.sort(result, new ComparatorTituloLista());
+			
+			}
+			if(order.equals("-titulo")) {
+				Collections.sort(result, new ComparatorTituloListaReversed());
 			
 			}else {
 				throw new BadRequestException("El parámetro para ordenar debe ser 'Titulo' o 'fc'.");
