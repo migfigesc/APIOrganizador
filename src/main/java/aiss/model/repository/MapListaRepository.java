@@ -58,12 +58,12 @@ public class MapListaRepository implements ListaRepository{
 
 	}
 	
-	// Playlist related operations
+	// Lista related operations
 	@Override
-	public void addLista(Lista p) {
-		String id = "" + index++;	
-		p.setId(id);
-		listaMap.put(id,p);
+	public void addLista(Lista l) {
+		String id = "l" + index++;	
+		l.setId(id);
+		listaMap.put(id,l);
 	}
 	
 	@Override
@@ -107,10 +107,10 @@ public class MapListaRepository implements ListaRepository{
 	// Song related operations
 	
 	@Override
-	public void addTarea(Tarea s) {
-		String id = "" + index++;
-		s.setId(id);
-		tareaMap.put(id, s);
+	public void addTarea(Tarea t) {
+		String id = "t" + index++;
+		t.setId(id);
+		tareaMap.put(id, t);
 	}
 	
 	@Override

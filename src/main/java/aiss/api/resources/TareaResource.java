@@ -155,8 +155,7 @@ public class TareaResource {
 		if (tarea.getCompletado()!=null)
 			oldTarea.setCompletado(tarea.getCompletado());
 		
-		//Update FechaCreacion
-		
+	
 		
 		//Update FechaVencimiento
 				if (tarea.getFechaVencimiento()!=null)
