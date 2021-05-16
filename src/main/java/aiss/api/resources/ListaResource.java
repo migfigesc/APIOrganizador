@@ -75,7 +75,7 @@ public class ListaResource {
 		for(Lista lista: repository.getAllListas()) {
 			if(j>=offset && i<limit) {
 
-				if(name == null || lista.getNombre().contains(name) ) {
+				if(name == null || lista.getTitulo().contains(name) ) {
 					if(isEmpty== null
 						|| (isEmpty && (lista.getTareas() == null || lista.getTareas().size() == 0))
 						|| (!isEmpty && (lista.getTareas() != null || lista.getTareas().size() > 0))){
@@ -92,11 +92,11 @@ public class ListaResource {
 				Collections.sort(result, new ComparatorTituloLista());
 			
 			}
-			if(order.equals("-titulo")) {
+			else if(order.equals("-titulo")) {
 				Collections.sort(result, new ComparatorTituloListaReversed());
 			
 			}else {
-				throw new BadRequestException("El parámetro para ordenar debe ser 'Titulo' o 'fc'.");
+				throw new BadRequestException("El parámetro para ordenar debe ser 'titulo'.");
 			}
 		}	
 		return result;
@@ -126,7 +126,7 @@ public class ListaResource {
 		
 	
 
-		if (lista.getNombre() == null || "".equals(lista.getNombre()))
+		if (lista.getTitulo() == null || "".equals(lista.getTitulo()))
 
 			throw new BadRequestException("El Titulo de la lista no puede ser nulo.");
 
@@ -169,21 +169,14 @@ public class ListaResource {
 			throw new BadRequestException("Las tareas de la lista no son editables.");
 		
 		// Update name
-		if (lista.getNombre()!=null)
-			oldLista.setNombre(lista.getNombre());
+		if (lista.getTitulo()!=null)
+			oldLista.setTitulo(lista.getTitulo());
 		
 		// Update description
 		if (lista.getDescripcion()!=null)
 			oldLista.setDescripcion(lista.getDescripcion());
 		
-		//Update completado - Cada vez que se añade una tarea se comprueba si la lista esta completada
-//		lista.setCompletado(true);
-//		for(Tarea tarea:lista.getTareas()) {
-//			if(tarea.getCompletado()==false) {
-//				lista.setCompletado(false);
-//			}
-//		}
-//		
+
 		return Response.noContent().build();
 	}
 	

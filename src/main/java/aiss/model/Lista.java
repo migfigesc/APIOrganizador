@@ -13,7 +13,7 @@ public class Lista {
 
 	private String id;
 
-	private String nombre;
+	private String titulo;
 
 	private String descripcion;
 
@@ -28,9 +28,9 @@ public class Lista {
 
 
 
-	public Lista(String nombre) {
+	public Lista(String titulo) {
 
-		this.nombre = nombre;
+		this.titulo = titulo;
 
 
 
@@ -58,17 +58,17 @@ public class Lista {
 
 
 
-	public String getNombre() {
+	public String getTitulo() {
 
-		return nombre;
+		return titulo;
 
 	}
 
 
 
-	public void setNombre(String nombre) {
+	public void setTitulo(String titulo) {
 
-		this.nombre = nombre;
+		this.titulo = titulo;
 
 	}
 

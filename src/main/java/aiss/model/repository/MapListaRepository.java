@@ -1,12 +1,13 @@
 package aiss.model.repository;
 
 import java.util.Collection;
+
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import aiss.model.Lista;
-import aiss.model.Playlist;
-import aiss.model.Song;
+
 import aiss.model.Tarea;
 
 
@@ -33,28 +34,47 @@ public class MapListaRepository implements ListaRepository{
 		listaMap = new HashMap<String,Lista>();
 		tareaMap = new HashMap<String,Tarea>();
 		
-		//para crear Lista y Tarea
+		//para crear Tarea
 		Tarea estudiar=new Tarea();
 		estudiar.setTitulo("Estudiar");
 		estudiar.setDescripcion("Estudiar examenes de la universidad");
 		estudiar.setCategoria("Estudios");
 		estudiar.setCompletado(false);
-//		estudiar.setFechaVencimiento("10-10-2021 19:00");
+		estudiar.setFechaVencimiento("2020-09-12");
 		addTarea(estudiar);
 		
+		Tarea pedir=new Tarea();
+		pedir.setTitulo("Pedir pista");
+		pedir.setDescripcion("Ir al polideportivo a reservar pista");
+		pedir.setCategoria("Deporte");
+		pedir.setCompletado(false);
+		pedir.setFechaVencimiento("2019-09-12");
+
+		addTarea(pedir);
 		
-					// Create playlists
+		
+		
+		// Create listas
+		
+		Lista uni= new Lista();
+		uni.setTitulo("AISS");
+		uni.setDescripcion("Preguntar a mis compañeros que me corresponde");
+		
+		addLista(uni);
+		addTarea(uni.getId(), estudiar.getId());
+		
+		Lista football= new Lista();
+		football.setTitulo("Football");
+		football.setDescripcion("Quedar con Nicolás para jugar");
+		
+		addLista(football);
+		addTarea(football.getId(), pedir.getId());
 				
 					
 					
 					
 					
-					Tarea tarea=new Tarea();
-					tarea.setTitulo("Smell Like Teen Spirit");
-//					tarea.setFechaVencimiento("17-05-2020 08:30");
-				
-					addTarea(tarea);
-		
+
 
 	}
 	

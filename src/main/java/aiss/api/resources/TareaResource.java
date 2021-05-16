@@ -92,7 +92,7 @@ public class TareaResource {
 			}else if(order.equals("cat")) {
 				Collections.sort(result, new ComparatorCategoriaTarea());
 			}else {
-				throw new BadRequestException("El parámetro para ordenar debe ser 'titulo' o 'fv' o 'fc' o 'cat'.");
+				throw new BadRequestException("El parámetro para ordenar debe ser 'titulo' o 'fv'  o 'cat'.");
 			}
 		}
 		return result;
