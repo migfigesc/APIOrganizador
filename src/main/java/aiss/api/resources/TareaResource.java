@@ -155,6 +155,10 @@ public class TareaResource {
 		if (tarea.getCompletado()!=null)
 			oldTarea.setCompletado(tarea.getCompletado());
 		
+		//Update ubicacion
+				if (tarea.getUbicacion()!=null)
+					oldTarea.setUbicacion(tarea.getUbicacion());
+		
 	
 		
 		//Update FechaVencimiento
