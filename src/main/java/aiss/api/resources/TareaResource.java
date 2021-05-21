@@ -83,16 +83,16 @@ public class TareaResource {
 		if(order!=null) {
 			if(order.equals("titulo")) {
 				Collections.sort(result, new ComparatorTituloTarea());
-			}else if(order.equals("fv")) {
+			}else if(order.equals("fechaVencimiento")) {
 				Collections.sort(result, new ComparatorFechaVencimientoTarea());
-			}else if(order.equals("-fv")) {
+			}else if(order.equals("-fechaVencimiento")) {
 				Collections.sort(result, new ComparatorFechaVencimientoTareaReversed());
 			
 			
-			}else if(order.equals("cat")) {
+			}else if(order.equals("categoria")) {
 				Collections.sort(result, new ComparatorCategoriaTarea());
 			}else {
-				throw new BadRequestException("El parámetro para ordenar debe ser 'titulo' o 'fv'  o 'cat'.");
+				throw new BadRequestException("El parámetro para ordenar debe ser 'titulo' o 'fechaVencimiento'  o 'categoría'.");
 			}
 		}
 		return result;
