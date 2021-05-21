@@ -1,6 +1,6 @@
 openapi: 3.0.0
 servers: 
-  - url: 'localhost:8089/api'
+  - url: 'http://localhost:8089/api'
 info:
   description: Modify this information
   version: 1.0.0
@@ -11,18 +11,18 @@ info:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
 tags:
-  - name: tareas
-    description: tareas
+  - name: tarea
+    description: tarea
   - name: listas
     description: listas
 paths:
-  /tareas:
+  /tarea:
     get:
       tags:
-        - tareas
-      summary: Get tareas
-      description: Get all tareas
-      operationId: gettareas
+        - tarea
+      summary: Get tarea
+      description: Get all tarea
+      operationId: gettarea
       parameters:
         - name: order
           in: query
@@ -70,7 +70,7 @@ paths:
           description: Bad request
     post:
       tags:
-        - tareas
+        - tarea
       summary: Create a tarea
       description: Create a tarea
       operationId: createtarea
@@ -93,7 +93,7 @@ paths:
                 completado:
                   type: string
               example:
-                  id: '01'
+                  id: 't01'
                   titulo: Hacer parte de integración proyecto AISS
                   descripcion: Buscar proyecto para integrar
                   categoria: Universidad
@@ -114,7 +114,7 @@ paths:
           description: Bad request
     put:
       tags:
-        - tareas
+        - tarea
       summary: Update a tarea
       description: Change a tarea
       operationId: changetarea
@@ -137,7 +137,7 @@ paths:
                 completado:
                   type: string
               example:
-                  id: '01'
+                  id: 't01'
                   titulo: Hacer parte de integración proyecto AISS
                   descripcion: Buscar proyecto para integrar
                   categoria: Universidad
@@ -156,13 +156,13 @@ paths:
                   $ref: '#/components/schemas/tarea'
         '400':
           description: Bad request
-  '/tareas/{id}':
+  '/tarea/{id}':
     get:
       tags:
-        - tareas
-      summary: Get id tareas
-      description: Get id tareas
-      operationId: gettareasId
+        - tarea
+      summary: Get id tarea
+      description: Get id tarea
+      operationId: gettareaId
       parameters:
         - name: id
           in: path
@@ -183,7 +183,7 @@ paths:
           description: Bad request
     delete:
       tags:
-        - tareas
+        - tarea
       summary: Delete tarea
       description: Delete tarea
       operationId: deletetarea
@@ -218,7 +218,7 @@ paths:
               - '-titulo'
         - name: isEmpty
           in: query
-          description: Filter listas with no tareas
+          description: Filter listas with no tarea
           required: false
           schema:
             type: boolean
@@ -422,7 +422,7 @@ components:
         fechaVencimiento:
           type: string
       example:
-          id: '01'
+          id: 't01'
           titulo: Hacer parte de integración proyecto AISS
           descripcion: Buscar proyecto para integrar
           categoria: Universidad
@@ -438,16 +438,16 @@ components:
           type: string
         descripcion:
           type: string
-        tareas:
+        tarea:
           type: array
           items: 
             $ref: '#/components/schemas/tarea'
       example:
-        id: '01'
+        id: 'l01'
         titulo: Proyectos universidad
         description: Proyectos de las asignaturas de la universidad
-        tareas:
-             - id: '01'
+        tarea:
+             - id: 't01'
                titulo: Hacer parte de integración proyecto AISS
                descripcion: Buscar proyecto para integrar
                categoria: Universidad
