@@ -11,6 +11,7 @@ public class Tarea {
 	private String categoria;
 	private Boolean completado;
 	private String fechaVencimiento;
+	private String ubicacion;
 
 	public Tarea() {
 	}
@@ -21,6 +22,7 @@ public class Tarea {
 		this.completado = false;
       
 		this.fechaVencimiento = fechaVencimiento;
+		this.ubicacion=ubicacion;
 	}
 	
 	public Tarea(String id, String titulo, String categoria, String fechaVencimiento) {
@@ -31,6 +33,15 @@ public class Tarea {
 
      
 		this.fechaVencimiento = fechaVencimiento;
+		this.ubicacion=ubicacion;
+	}
+
+	public void setUbicacion(String ubicacion) {
+		this.ubicacion = ubicacion;
+	}
+
+	public String getUbicacion() {
+		return ubicacion;
 	}
 
 	public String getId() {
