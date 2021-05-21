@@ -56,7 +56,7 @@ public class ListaResource {
 	@GET
 	@Produces("application/json")
 	public Collection<Lista> getAll(@QueryParam("order") String order,@QueryParam("isEmpty") Boolean isEmpty,
-			@QueryParam("name") String name,@QueryParam("limit") Integer limit,@QueryParam("offset") Integer offset){
+			@QueryParam("titulo") String titulo,@QueryParam("limit") Integer limit,@QueryParam("offset") Integer offset){
 		
 		List<Lista> result= new ArrayList<Lista>();
 		
@@ -75,7 +75,7 @@ public class ListaResource {
 		for(Lista lista: repository.getAllListas()) {
 			if(j>=offset && i<limit) {
 
-				if(name == null || lista.getTitulo().contains(name) ) {
+				if(titulo == null || lista.getTitulo().contains(titulo) ) {
 					if(isEmpty== null
 						|| (isEmpty && (lista.getTareas() == null || lista.getTareas().size() == 0))
 						|| (!isEmpty && (lista.getTareas() != null || lista.getTareas().size() > 0))){
