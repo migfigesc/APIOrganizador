@@ -2,42 +2,48 @@
 <%@include file="includes/header.jsp"%>
 
 <body>
-	<h1>Song Edit</h1>
+	<h1>Editar Tarea</h1>
 
 	
-	<% String controller = "songnew"; %>
+	<% String controller = "tareanew"; %>
 	
-	<c:if test="${not empty song}">
-    	<% controller = "songupdate"; %>
+	<c:if test="${not empty tarea}">
+    	<% controller = "tareaupdate"; %>
 	</c:if>
 	
 	<div class="container">
 	 
 		<form action="<%= controller %>" method="post">
 	
-			<label for="artist">Artist: </label> 
-			<input id="artist" name="artist" type="text" required="required" value="${song.artist}"> 
+			<label for="titulo">Titulo: </label> 
+			<input id="titulo" name="titulo" type="text" required="required" value="${tarea.titulo}"> 
 			
-			<label for="title">Title: </label> 
-			<input id="title" name="title" type="text" required="required" value="${song.title}">
+			<label for="descripcion">Descripcion: </label> 
+			<input id="descripcion" name="descripcion" type="text" required="required" value="${tarea.descripcion}">
 			
-			<label for="album">Album: </label> 
-			<input id="album" name="album" type="text" required="required" value="${song.album}">
+			<label for="categoria">Categoria: </label> 
+			<input id="categoria" name="categoria" type="text" required="required" value="${tarea.categoria}">
 			  
-			<label for="year">Year: </label> 
-			<input id="year" name="year" type="text" pattern="\d{4}" required="required" value="${song.year}">
+			<label for="completado">Completado: </label> 
+			<input id="completado" name="completado" type="text" required="required" value="${tarea.completado}">
+			
+			<label for="fechaVencimiento">FechaVencimiento: </label> 
+			<input id="fechaVencimiento" name="fechaVencimiento" type="text" required="required" value="${tarea.fechaVencimiento}">
+			
+			<label for="ubicacion">Ubicacion: </label> 
+			<input id="ubicacion" name="ubicacion" type="text" required="required" value="${tarea.ubicacion}">
 			
 			
-			<input name="playlistId" type="hidden" value="${param['playlistId']}">
+			<input name="listaId" type="hidden" value="${param['listaId']}">
 			
-			<c:if test="${not empty song}">
-				<input name="songId" type="hidden" value="${song.id}"></input>
+			<c:if test="${not empty tarea}">
+				<input name="tareaId" type="hidden" value="${tarea.tareaId}"></input>
 				<input name="operation" type="hidden" value="update"></input>
 			</c:if>
 	
 			<div class="bottom_links">
 				<button type="submit" class="button">Submit</button>
-				<button type="button" onClick="javascript:window.location.href='list?playlistId=${param['playlistId']}'" class="button">Cancel</button>
+				<button type="button" onClick="javascript:window.location.href='lista?listaId=${param['listaId']}'" class="button">Cancel</button>
 			</div>
 	
 		</form>
