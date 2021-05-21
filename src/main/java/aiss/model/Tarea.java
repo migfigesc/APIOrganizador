@@ -5,7 +5,7 @@ import java.time.LocalDate;
 
 public class Tarea {
 	
-	private String id;
+	private String tareaId;
 	private String titulo;
 	private String descripcion;
 	private String categoria;
@@ -26,7 +26,7 @@ public class Tarea {
 	}
 	
 	public Tarea(String id, String titulo, String categoria, String fechaVencimiento) {
-		this.id=id;
+		this.tareaId=id;
 		this.titulo = titulo;
 		this.categoria = categoria;
 		this.completado = false;
@@ -45,11 +45,11 @@ public class Tarea {
 	}
 
 	public String getId() {
-		return id;
+		return tareaId;
 	}
 
 	public void setId(String id) {
-		this.id = id;
+		this.tareaId = id;
 	}
 
 	public String getTitulo() {
@@ -83,8 +83,6 @@ public class Tarea {
 	public void setCompletado(Boolean completado) {
 		this.completado = completado;
 	}
-
-
 
 	public String getFechaVencimiento() {
 		return fechaVencimiento;
