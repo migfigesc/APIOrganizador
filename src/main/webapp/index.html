@@ -1,37 +1,163 @@
 <!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
-<!-- The HTML 4.01 Transitional DOCTYPE declaration-->
-<!-- above set at the top of the file will set     -->
-<!-- the browser's rendering engine into           -->
-<!-- "Quirks Mode". Replacing this declaration     -->
-<!-- with a "Standards Mode" doctype is supported, -->
-<!-- but may lead to some differences in layout.   -->
 
 <html>
-  <head>
-  	<link rel="icon" href="favicon.png">
-    <meta http-equiv="content-type" content="text/html; charset=UTF-8">
-    <title>Organizador - API Rest</title>
-	</head>
 
-  <body style="margin:0px; background:#f7f7f7;">
-  
+<head>
+  <link rel="icon" href="favicon.png">
+  <meta http-equiv="content-type" content="text/html; charset=UTF-8">
+  <!-- UIkit CSS -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/uikit@3.6.22/dist/css/uikit.min.css" />
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-gtEjrD/SeCtmISkJkNUaaKMoLD0//ElJ19smozuHV6z3Iehds+3Ulb9Bn9Plx0x4"
+    crossorigin="anonymous"></script> <!-- UIkit JS -->
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.22/dist/js/uikit.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/uikit@3.6.22/dist/js/uikit-icons.min.js"></script>
+  <title>Organizador - API Rest</title>
+</head>
+
+<body class="m-0">
+  <div class="container-fluid sticky-top bg-white" style="z-index: 5;">
+    <div class="row border-bottom sticky-top border-secondary">
+      <div class="col-6">
+        <img src="logo.svg" alt="" class="my-2" style="height: 50px;">
+      </div>
+      <div class="col-6 float-right p-0">
+        <button class="uk-button float-right uk-button-secondary py-3 px-5" type="button"
+          uk-toggle="target: #offcanvas-overlay" style="float: right;"><span class="uk-margin-small-right"
+            uk-icon="icon: menu; ratio: 1"></span>menu</button>
+      </div>
+    </div>
+  </div>
+  <div id="offcanvas-overlay" uk-offcanvas="overlay: false; flip: true">
+    <div class="uk-offcanvas-bar uk-background-default border-start border-secondary">
+
+      <button class="uk-offcanvas-close uk-text-secondary" type="button" uk-close
+        style="color: #111 !important;"></button>
+
+      <a href="/docs/index.html" class=" uk-text-secondary py-3 mt-4 uk-text-left" style="width: 100%; float: left;">
+        <h3 class="uk-text-uppercase" style="color: #111;">Documentación</h3>
+      </a>
+
+      <a href="/docs/index.html" class=" uk-text-secondary py-3 uk-text-left" style="width: 100%; float: left;">
+        <h3 class="uk-text-uppercase" style="color: #111;">Interfaz</h3>
+      </a>
+
+      <a href="/docs/index.html" class=" uk-text-secondary py-3 uk-text-left" style="width: 100%; float: left;">
+        <h3 class="uk-text-uppercase" style="color: #111;">Api</h3>
+      </a>
+    </div>
+  </div>
+
   <style>
-  html{overflow-y: hidden;}
-  .btn{padding:10px 20px; border:2px solid #BFFE39; border-radius:7px; background:#BFFE39; font-size:20px; color:#111; font-family:Helvetica; text-decoration:none; margin:0 auto; display: table; margin-top: -20%;
-     -webkit-transition: all 0.2s linear;
-	-moz-transition: all 0.2s linear;
-	transition: all 0.2s linear;
-  }
-  .btn:hover{
-  background:transparent;
-     -webkit-transition: all 0.2s linear;
-	-moz-transition: all 0.2s linear;
-	transition: all 0.2s linear;
-  }
+    .btn {
+      padding: 10px 20px;
+      border: 2px solid #BFFE39;
+      border-radius: 7px;
+      background: #BFFE39;
+      font-size: 18px;
+      color: #111;
+      font-weight: 500;
+      text-decoration: none;
+      margin: 0 auto;
+      -webkit-transition: all 0.2s linear;
+      -moz-transition: all 0.2s linear;
+      transition: all 0.2s linear;
+    }
+
+    body,
+    .uk-button {
+      font-family: 'Inter', sans-serif !important;
+    }
+
+    h3,
+    a,
+    h2,
+    h5,
+    a,
+    a:hover {
+      font-family: 'Inter', sans-serif !important;
+      text-decoration: none;
+      color: #111;
+    }
+
+    h1 {
+      font-family: 'Inter', sans-serif !important;
+      font-weight: 700;
+    }
+
+    .btn:hover {
+      text-decoration: none;
+      background: transparent;
+      -webkit-transition: all 0.2s linear;
+      -moz-transition: all 0.2s linear;
+      transition: all 0.2s linear;
+    }
   </style>
-    <img style="width:100%; z-index:-1;" src="API-ORGANIZADOR.png">
-    <div style="width:100%;">
-	<a href="api/listas" class="btn">API LISTAS</a>
- 	</div>
-  </body>
+  <div class="container-fluid" style="background:#f7f7f7;">
+    <div class="row pt-5">
+      <div class="col-md-7 px-5 my-5 text-left">
+        <h1 class="mt-5">Aumenta tu productividad,</h1>
+        <h1>con una organización de calidad.</h1>
+        <div style="width:100%;">
+          <a href="api/listas" class="mt-5 btn">¡Quiero organizarme!</a>
+        </div>
+      </div>
+      <div class="col-md-5 px-5 mx-auto my-5 text-center">
+        <img style="width:100%;" class="mt-5" src="img-1.png">
+      </div>
+    </div>
+    <div class="row pb-5">
+      <div class="col-12 text-center">
+        <span uk-icon="icon: chevron-down; ratio: 3"></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid border-bottom border-top border-secondary">
+    <div class="row pt-5">
+      <div class="col-md-4 px-5 mx-auto my-5 text-center">
+        <img style="width:100%;" class="my-5" src="img-3.png">
+        <h2>Crea tareas pendientes de forma rápida</h2>
+      </div>
+      <div class="col-md-4 px-5 mx-auto my-5 text-center">
+        <img style="width:100%;" class="my-5" src="img-4.png">
+        <h2>Podrás organizar las tareas en listas</h2>
+      </div>
+      <div class="col-md-4 px-5 my-5 text-center">
+        <img style="width:100%;" class="my-5" src="img-2.png">
+        <h2>Exprime tu tiempo al máximo</h2>
+      </div>
+    </div>
+    <div class="row pb-5">
+      <div class="col-12 pb-5 text-center">
+        <a href="api/listas" class="mt-5 btn">Ver documentación</a>
+      </div>
+    </div>
+  </div>
+
+  <div class="container-fluid" style="background:#f7f7f7;">
+    <div class="row pt-5 px-5">
+      <div class="col-md-6 px-5 mx-auto my-5 text-left">
+        <h5>Creado por:</h5>
+        <a href="mailto:anaconmar@alum.us.es">Ana Conde Marrón</a><br>
+        <a href="mailto:enrmunper@alum.us.es">Enrique Muñoz Pérez</a><br>
+        <a href="mailto:jaimosber@alum.us.es">Jaime Moscoso Bernal</a><br>
+        <a href="mailto:migfigesc@alum.us.es">Miguel Figueroa Escribano</a><br>
+        <a href="mailto:rafrosgar@alum.us.es">Rafael Rossi García</a><br>
+      </div>
+      <div class="col-md-6 px-5 mx-auto my-5 text-left">
+        <h5>Enlaces:</h5>
+        <a href="/docs/index.html">Documentación</a><br>
+        <a href="/tarea">Crear una tarea</a><br>
+        <a href="/api/tareas">Ver API</a><br>
+      </div>
+    </div>
+  </div>
+
+</body>
+
 </html>
