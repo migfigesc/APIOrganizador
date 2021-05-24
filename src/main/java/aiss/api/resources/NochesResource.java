@@ -8,85 +8,85 @@ import javax.validation.constraints.AssertFalse;
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
 
-import aiss.model.Playlist;
-import aiss.model.Song;
+import aiss.model.Intervalo;
+import aiss.model.Noche;
 
 public class NochesResource {
 
-	private String uri = "https://good-night-2021.ew.r.appspot.com/noches";
+	private String uri = "https://good-night-2021.ew.r.appspot.com/api/v1/noches";
 	//private String uri = "http://localhost:8095/api/songs";
 //
 	
-	public Collection<Song> getAll() {
+	public Collection<Noche> getAll() {
 		ClientResource cr = null;
-		Song [] songs = null;
+		Noche [] noches = null;
 		try {
 			cr = new ClientResource(uri);
-			songs = cr.get(Song[].class);
+			noches = cr.get(Noche[].class);
 			
 		} catch (ResourceException re) {
-			System.err.println("Error when retrieving all songs: " + cr.getResponse().getStatus());
+			System.err.println("Error when retrieving all noches: " + cr.getResponse().getStatus());
 			throw re;
 		}
 		
-		return Arrays.asList(songs);
+		return Arrays.asList(noches);
 	}
 	
 
-	public Song getSong(String songId) {
+	public Noche getNoche(String nocheId) {
 		ClientResource cr = null;
-		Song song = null;
+		Noche noche = null;
 		try {
-			cr = new ClientResource(uri + "/" + songId);
-			song = cr.get(Song.class);
+			cr = new ClientResource(uri + "/" + nocheId);
+			noche = cr.get(Noche.class);
 			
 		} catch (ResourceException re) {
-			System.err.println("Error when retrieving the playlist: " + cr.getResponse().getStatus());
+			System.err.println("Error al recuperar la noche: " + cr.getResponse().getStatus());
 		}
-		return song;
+		return noche;
 	}
 	
 
-	public Song addSong(Song song) {
+	public Noche addNoche(Noche noche) {
 		ClientResource cr = null;
-		Song resultSong = null;
+		Noche resultadoNoche = null;
 		try {
 			cr = new ClientResource(uri);
-			resultSong = cr.post(song,Song.class);
+			resultadoNoche = cr.post(noche,Noche.class);
 			
 		} catch (ResourceException re) {
-			System.err.println("Error when adding the song: " + cr.getResponse().getStatus());
+			System.err.println("Error al añadir la noche: " + cr.getResponse().getStatus());
 		}
-		return resultSong;
+		return resultadoNoche;
 
 	}
 	
-	public boolean updateSong(Song song) {
+	public boolean updateNoche(Noche noche) {
 		boolean result = false;
 		ClientResource cr = null;
 		try {
 			cr= new ClientResource(uri);
-			cr.put(song);
+			cr.put(noche);
 			result= true;
 	
 		}catch(ResourceException re) {
-			System.err.println("Error when updating the song: " + cr.getResponse().getStatus());
+			System.err.println("Erro al actualizar la noche: " + cr.getResponse().getStatus());
 
 		}
 		return result;
 	}
 	
 
-	public boolean deleteSong(String songId) {
+	public boolean deleteNoche(String nocheId) {
 		ClientResource cr = null;
 		boolean success = true;
 		try {
-			cr = new ClientResource(uri + "/" + songId);
+			cr = new ClientResource(uri + "/" + nocheId);
 			cr.setEntityBuffering(true);		// Needed for using RESTlet from JUnit tests
 			cr.delete();
 			
 		} catch (ResourceException re) {
-			System.err.println("Error when deleting the song: " + cr.getResponse().getStatus());
+			System.err.println("Error al eluminar la ncohe: " + cr.getResponse().getStatus());
 			success = false;
 			throw re;
 		}
