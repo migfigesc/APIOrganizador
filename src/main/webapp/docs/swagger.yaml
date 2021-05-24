@@ -1,6 +1,6 @@
 openapi: 3.0.0
 servers: 
-  - url: 'http://localhost:8089'
+  - url: 'https://organizador-restapi.ew.r.appspot.com'
 info:
   description: Modify this information
   version: 1.0.0
