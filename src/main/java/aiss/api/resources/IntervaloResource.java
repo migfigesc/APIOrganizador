@@ -26,7 +26,7 @@ public class IntervaloResource {
 			intervals = cr.get(Intervalo[].class);
 			
 		} catch (ResourceException re) {
-			System.err.println("Error when retrieving the collections of intervals: " + cr.getResponse().getStatus());
+			System.err.println("Error recuperando las colecciones de intervalos: " + cr.getResponse().getStatus());
 		}
 		
 		return Arrays.asList(intervals);
@@ -42,7 +42,7 @@ public class IntervaloResource {
 			intervalo = cr.get(Intervalo.class);
 			
 		} catch (ResourceException re) {
-			System.err.println("Error when retrieving the playlist: " + cr.getResponse().getStatus());
+			System.err.println("Error recibiendo el intervalo: " + cr.getResponse().getStatus());
 		}
 		
 		return intervalo;
@@ -60,7 +60,7 @@ public class IntervaloResource {
 			resultIntervalo = cr.post(intervalo,Intervalo.class);
 			
 		} catch (ResourceException re) {
-			System.err.println("Error when adding the interval: " + cr.getResponse().getStatus());
+			System.err.println("Error añadiendo el intervalo: " + cr.getResponse().getStatus());
 		}
 		
 		return resultIntervalo;
@@ -76,7 +76,7 @@ public class IntervaloResource {
 			cr.put(intervalo);
 			
 		} catch (ResourceException re) {
-			System.err.println("Error when updating the playlist: " + cr.getResponse().getStatus());
+			System.err.println("Error actualizando el intervalo: " + cr.getResponse().getStatus());
 			success = false;
 		}
 		return success;
@@ -91,14 +91,14 @@ public class IntervaloResource {
 			cr.delete();
 			
 		} catch (ResourceException re) {
-			System.err.println("Error when deleting the interval: " + cr.getResponse().getStatus());
+			System.err.println("Error eliminando el intervalo: " + cr.getResponse().getStatus());
 			success = false;
 		}
 		
 		return success;
 	}
 	
-	public boolean addSong(String intervaloId, String nocheId) {
+	public boolean addNoche(String intervaloId, String nocheId) {
 		ClientResource cr= null;
 		Boolean result= false;
 	try {
@@ -106,7 +106,7 @@ public class IntervaloResource {
 		cr.post(" ");
 		result= true;
 	} catch (ResourceException re) {
-		System.err.println("Error when adding song to the playlist: " );
+		System.err.println("Error añadiendo la noche al intervalo: " );
 	}
 			
 		
@@ -114,7 +114,7 @@ public class IntervaloResource {
 		
 	}
 	
-	public boolean removeSong(String intervaloId, String nocheId) {
+	public boolean removeNoche(String intervaloId, String nocheId) {
 		ClientResource cr= null;
 		Boolean result= false;
 	try {
@@ -122,7 +122,7 @@ public class IntervaloResource {
 		cr.delete();
 		result= true;
 	} catch (ResourceException re) {
-		System.err.println("Error when removing song to the playlist: " + re.getStatus());
+		System.err.println("Error eliminando la noche del intervalo: " + re.getStatus());
 	}
 		
 		return result;
