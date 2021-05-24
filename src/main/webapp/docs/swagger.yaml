@@ -2,11 +2,11 @@ openapi: 3.0.0
 servers: 
   - url: 'https://organizador-restapi.ew.r.appspot.com'
 info:
-  description: Modify this information
+  description: Organízate fácilmente con API Organizador
   version: 1.0.0
-  title: organizador_AISS
+  title: API Organizador
   contact:
-    email: you@your-company.com
+    email: enrmunper@alum.us.es
   license:
     name: Apache 2.0
     url: 'http://www.apache.org/licenses/LICENSE-2.0.html'
