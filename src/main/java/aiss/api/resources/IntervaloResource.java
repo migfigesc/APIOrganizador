@@ -13,99 +13,96 @@ import aiss.model.Intervalo;
 
 public class IntervaloResource {
 
-	private String uri = "https://lab7-313306.ew.r.appspot.com/api/lists";
+	private String uri = "https://good-night-2021.ew.r.appspot.com/api/v1/intervalos";
 	//private String uri = "http://localhost:8095/api/lists";
 	
 
 	public Collection<Intervalo> getAll() {
 		
 		ClientResource cr = null;
-		Intervalo [] lists = null;
+		Intervalo [] intervals = null;
 		try {
 			cr = new ClientResource(uri);
-			lists = cr.get(Intervalo[].class);
+			intervals = cr.get(Intervalo[].class);
 			
 		} catch (ResourceException re) {
-			System.err.println("Error when retrieving the collections of playlists: " + cr.getResponse().getStatus());
+			System.err.println("Error when retrieving the collections of intervals: " + cr.getResponse().getStatus());
 		}
 		
-		return Arrays.asList(lists);
+		return Arrays.asList(intervals);
 	}
 	
 	
-	public Intervalo getPlaylist(String playlistId) {
+	public Intervalo getIntervalo(String intervaloId) {
 		
 		ClientResource cr = null;
-		Intervalo list = null;
+		Intervalo intervalo = null;
 		try {
-			cr = new ClientResource(uri + "/" + playlistId);
-			list = cr.get(Intervalo.class);
+			cr = new ClientResource(uri + "/" + intervaloId);
+			intervalo = cr.get(Intervalo.class);
 			
 		} catch (ResourceException re) {
 			System.err.println("Error when retrieving the playlist: " + cr.getResponse().getStatus());
 		}
 		
-		return list;
+		return intervalo;
 
 	}
 	
 
-	public Intervalo addPlaylist(Intervalo pl) {
+	public Intervalo addIntervalo(Intervalo intervalo) {
 		
 		ClientResource cr = null;
-		Intervalo resultPlaylist = null;
+		Intervalo resultIntervalo = null;
 		try {
 			cr = new ClientResource(uri);
 			cr.setEntityBuffering(true);		// Needed for using RESTlet from JUnit tests
-			resultPlaylist = cr.post(pl,Intervalo.class);
+			resultIntervalo = cr.post(intervalo,Intervalo.class);
 			
 		} catch (ResourceException re) {
-			System.err.println("Error when adding the playlist: " + cr.getResponse().getStatus());
+			System.err.println("Error when adding the interval: " + cr.getResponse().getStatus());
 		}
 		
-		return resultPlaylist;
+		return resultIntervalo;
 	}
 	
 
-	public boolean updatePlaylist(Intervalo pl) {
+	public boolean updateIntervalo(Intervalo intervalo) {
 		ClientResource cr = null;
 		boolean success = true;
 		try {
 			cr = new ClientResource(uri);
 			cr.setEntityBuffering(true);		// Needed for using RESTlet from JUnit tests
-			cr.put(pl);
-			
+			cr.put(intervalo);
 			
 		} catch (ResourceException re) {
 			System.err.println("Error when updating the playlist: " + cr.getResponse().getStatus());
 			success = false;
 		}
-		
 		return success;
-	}
+	}	
 	
-	
-	public boolean deletePlaylist(String playlistId) {
+	public boolean deleteIntervalo(String intervaloId) {
 		ClientResource cr = null;
 		boolean success = true;
 		try {
-			cr = new ClientResource(uri + "/" + playlistId);
+			cr = new ClientResource(uri + "/" + intervaloId);
 			cr.setEntityBuffering(true);		// Needed for using RESTlet from JUnit tests
 			cr.delete();
 			
 		} catch (ResourceException re) {
-			System.err.println("Error when deleting the playlist: " + cr.getResponse().getStatus());
+			System.err.println("Error when deleting the interval: " + cr.getResponse().getStatus());
 			success = false;
 		}
 		
 		return success;
 	}
 	
-	public boolean addSong(String playlistId, String songId) {
+	public boolean addSong(String intervaloId, String nocheId) {
 		ClientResource cr= null;
 		Boolean result= false;
 	try {
-		cr= new ClientResource(uri + "/"+ playlistId+"/"+songId);
+		cr= new ClientResource(uri + "/"+ intervaloId+"/"+nocheId);
 		cr.post(" ");
 		result= true;
 	} catch (ResourceException re) {
@@ -117,11 +114,11 @@ public class IntervaloResource {
 		
 	}
 	
-	public boolean removeSong(String playlistId, String songId) {
+	public boolean removeSong(String intervaloId, String nocheId) {
 		ClientResource cr= null;
 		Boolean result= false;
 	try {
-		cr= new ClientResource(uri + "/"+ playlistId+"/"+songId);
+		cr= new ClientResource(uri + "/"+ intervaloId+"/"+nocheId);
 		cr.delete();
 		result= true;
 	} catch (ResourceException re) {
