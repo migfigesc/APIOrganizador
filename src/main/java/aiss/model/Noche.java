@@ -3,67 +3,112 @@ package aiss.model;
 public class Noche {
 
 	private String id;
-	private String title;
-	private String artist;
-	private String album;
-	private String year;
+	private String fecha_suenyo;
+	private TipoSuenyo tipo_suenyo;
+	private CalidadSuenyo calidadsuenyo;
+	private EstadoAnimo estado_animo;
+	private Integer hora_in;
+	private Integer hora_fin;
 
 	public Noche() {
 	}
 
-	public Noche(String title, String artist, String album, String year) {
-		this.title = title;
-		this.artist = artist;
-		this.album = album;
-		this.year = year;
+
+
+	public Noche(String id, String fecha_suenyo, TipoSuenyo tipo_suenyo, CalidadSuenyo calidadsuenyo,
+			EstadoAnimo estado_animo, Integer hora_in, Integer hora_fin) {
+		super();
+		this.id = id;
+		this.fecha_suenyo = fecha_suenyo;
+		this.tipo_suenyo = tipo_suenyo;
+		this.calidadsuenyo = calidadsuenyo;
+		this.estado_animo = estado_animo;
+		this.hora_in = hora_in;
+		this.hora_fin = hora_fin;
 	}
-	
-	public Noche(String id, String title, String artist, String album, String year) {
-		this.id=id;
-		this.title = title;
-		this.artist = artist;
-		this.album = album;
-		this.year = year;
-	}
+
+
 
 	public String getId() {
 		return id;
 	}
 
+
+
 	public void setId(String id) {
 		this.id = id;
 	}
 
-	public String getTitle() {
-		return title;
+
+
+	public String getFecha_suenyo() {
+		return fecha_suenyo;
 	}
 
-	public void setTitle(String title) {
-		this.title = title;
+
+
+	public void setFecha_suenyo(String fecha_suenyo) {
+		this.fecha_suenyo = fecha_suenyo;
 	}
 
-	public String getArtist() {
-		return artist;
+
+
+	public TipoSuenyo getTipo_suenyo() {
+		return tipo_suenyo;
 	}
 
-	public void setArtist(String artist) {
-		this.artist = artist;
+
+
+	public void setTipo_suenyo(TipoSuenyo tipo_suenyo) {
+		this.tipo_suenyo = tipo_suenyo;
 	}
 
-	public String getAlbum() {
-		return album;
+
+
+	public CalidadSuenyo getCalidadsuenyo() {
+		return calidadsuenyo;
 	}
 
-	public void setAlbum(String album) {
-		this.album = album;
+
+
+	public void setCalidadsuenyo(CalidadSuenyo calidadsuenyo) {
+		this.calidadsuenyo = calidadsuenyo;
 	}
 
-	public String getYear() {
-		return year;
+
+
+	public EstadoAnimo getEstado_animo() {
+		return estado_animo;
 	}
 
-	public void setYear(String year) {
-		this.year = year;
+
+
+	public void setEstado_animo(EstadoAnimo estado_animo) {
+		this.estado_animo = estado_animo;
 	}
 
+
+
+	public Integer getHora_in() {
+		return hora_in;
+	}
+
+
+
+	public void setHora_in(Integer hora_in) {
+		this.hora_in = hora_in;
+	}
+
+
+
+	public Integer getHora_fin() {
+		return hora_fin;
+	}
+
+
+
+	public void setHora_fin(Integer hora_fin) {
+		this.hora_fin = hora_fin;
+	}
+	
 }
