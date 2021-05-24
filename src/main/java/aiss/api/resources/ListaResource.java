@@ -42,7 +42,6 @@ public class ListaResource {
 	
 	private ListaResource() {
 		repository=MapListaRepository.getInstance();
-
 	}
 	
 	public static ListaResource getInstance()
@@ -51,30 +50,26 @@ public class ListaResource {
 				_instance=new ListaResource();
 		return _instance;
 	}
-	
 
 	@GET
 	@Produces("application/json")
 	public Collection<Lista> getAll(@QueryParam("order") String order,@QueryParam("isEmpty") Boolean isEmpty,
-			@QueryParam("titulo") String titulo,@QueryParam("limit") Integer limit,@QueryParam("offset") Integer offset){
+		@QueryParam("titulo") String titulo,@QueryParam("limit") Integer limit,@QueryParam("offset") Integer offset){
 		
 		List<Lista> result= new ArrayList<Lista>();
-		
 		if(offset==(null) || offset>repository.getAllListas().size()) {
 			offset=0;
 		}
+		
 		if(limit==(null) || limit>repository.getAllListas().size()) {
 			limit=repository.getAllListas().size();
 		}
 		
 		int i=0;
 		int j=0;
-		
-		
-		
+
 		for(Lista lista: repository.getAllListas()) {
 			if(j>=offset && i<limit) {
-
 				if(titulo == null || lista.getTitulo().contains(titulo) ) {
 					if(isEmpty== null
 						|| (isEmpty && (lista.getTareas() == null || lista.getTareas().size() == 0))
@@ -90,12 +85,11 @@ public class ListaResource {
 		if(order!=null) {
 			if(order.equals("titulo")) {
 				Collections.sort(result, new ComparatorTituloLista());
-			
 			}
 			else if(order.equals("-titulo")) {
 				Collections.sort(result, new ComparatorTituloListaReversed());
-			
-			}else {
+			}
+			else {
 				throw new BadRequestException("El parámetro para ordenar debe ser 'titulo'.");
 			}
 		}	
@@ -105,57 +99,30 @@ public class ListaResource {
 	@GET
 	@Path("/{id}")
 	@Produces("application/json")
-	public Lista get(@PathParam("id") String id)
-	{
+	public Lista get(@PathParam("id") String id){
 		Lista list = repository.getLista(id);
-		
 		if (list == null) {
 			throw new NotFoundException("No se ha encontrado la lista con id ="+ id);			
 		}
-		
 		return list;
 	}
 	
 	@POST
-
 	@Consumes("application/json")
-
 	@Produces("application/json")
-
 	public Response addLista(@Context UriInfo uriInfo, Lista lista) {
-		
-	
-
 		if (lista.getTitulo() == null || "".equals(lista.getTitulo()))
-
 			throw new BadRequestException("El Titulo de la lista no puede ser nulo.");
-
-		
-
 		if (lista.getTareas()!=null)
-
 			throw new BadRequestException("Las tareas de la lista no se pueden editar.");
-
-
-
 		repository.addLista(lista);
-
-
-
 		// Builds the response. Returns the playlist the has just been added.
-
 		UriBuilder ub = uriInfo.getAbsolutePathBuilder().path(this.getClass(), "get");
-
 		URI uri = ub.build(lista.getId());
-
 		ResponseBuilder resp = Response.created(uri);
-
 		resp.entity(lista);			
-
 		return resp.build();
-
 	}
-
 	
 	@PUT
 	@Consumes("application/json")
@@ -164,19 +131,14 @@ public class ListaResource {
 		if (oldLista == null) {
 			throw new NotFoundException("La lista con id ="+ lista.getId() +" no se ha encontrado.");			
 		}
-		
 		if (lista.getTareas()!=null)
 			throw new BadRequestException("Las tareas de la lista no son editables.");
-		
 		// Update name
 		if (lista.getTitulo()!=null)
 			oldLista.setTitulo(lista.getTitulo());
-		
 		// Update description
 		if (lista.getDescripcion()!=null)
 			oldLista.setDescripcion(lista.getDescripcion());
-		
-
 		return Response.noContent().build();
 	}
 	
@@ -188,27 +150,21 @@ public class ListaResource {
 			throw new NotFoundException("La lista con id="+ id +" no se encuentra");
 		else
 			repository.deleteLista(id);
-		
 		return Response.noContent().build();
 	}
-	
 	
 	@POST	
 	@Path("/{listaid}/{tareaid}")
 	@Consumes("text/plain")
 	@Produces("application/json")
-	public Response addTarea(@Context UriInfo uriInfo,@PathParam("listaid") String listaid, @PathParam("tareaid") String tareaid)
-	{				
+	public Response addTarea(@Context UriInfo uriInfo,@PathParam("listaid") String listaid, @PathParam("tareaid") String tareaid){
 		
 		Lista lista = repository.getLista(listaid);
 		Tarea tarea = repository.getTarea(tareaid);
-		
 		if (lista==null)
 			throw new NotFoundException("La lista con id=" + listaid + " no se encuentra");
-		
 		if (tarea == null)
 			throw new NotFoundException("La tarea con id=" + tareaid + " no se encuentra");
-		
 		if (lista.getTarea(tareaid)!=null)
 			throw new BadRequestException("La tarea ya está incluida en la lista");
 		
@@ -221,7 +177,6 @@ public class ListaResource {
 //		}
 			
 		repository.addTarea(listaid, tareaid);		
-
 		// Builds the response
 		UriBuilder ub = uriInfo.getAbsolutePathBuilder().path(this.getClass(), "get");
 		URI uri = ub.build(listaid);
