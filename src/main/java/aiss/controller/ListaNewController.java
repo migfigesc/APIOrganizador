@@ -33,11 +33,11 @@ public class ListaNewController extends HttpServlet {
 		Lista lista = lr.addLista(new Lista(name));
 
 		// Log
-		log.log(Level.FINE, "New playlist request. name=" + name + ". Forwarding to playlist list view.");
+		log.log(Level.FINE, "Nueva solicitud de lista. Nombre=" + name + ". Reenvío a la vista de listas.");
 
 		// Forward to contact list view
-		request.setAttribute("message", "Playlist created successfully");
-		request.getRequestDispatcher("/list?playlistId=" + lista.getId()).forward(request, response);
+		request.setAttribute("mensaje", "Lista creada correctamente");
+		request.getRequestDispatcher("/lista/" + lista.getId()).forward(request, response);
 	}
 
 	/**
