@@ -1,3 +1,4 @@
+
 package aiss.controller;
 
 import java.io.IOException;
@@ -37,7 +38,7 @@ public class ListaNewController extends HttpServlet {
 
 		// Forward to contact list view
 		request.setAttribute("mensaje", "Lista creada correctamente");
-		request.getRequestDispatcher("/lista/" + lista.getId()).forward(request, response);
+		request.getRequestDispatcher("/lista?listaId=" + lista.getId()).forward(request, response);
 	}
 
 	/**

@@ -50,7 +50,7 @@ public class ListaAddTareaController extends HttpServlet {
 		}
 		
 		// Forward to contact list view
-		request.getRequestDispatcher("/lista/" + listaId+"/"+tareaId).forward(request, response);
+		request.getRequestDispatcher("/lista?listaId=" + listaId).forward(request, response);
 	}
 
 	/**

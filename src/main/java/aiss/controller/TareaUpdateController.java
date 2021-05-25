@@ -78,7 +78,7 @@ public class TareaUpdateController extends HttpServlet {
 
 			// Forward to tarea list view
 			request.setAttribute("message", "la tarea se ha actualizado con éxito");
-			request.getRequestDispatcher("/list").forward(request, response);
+			request.getRequestDispatcher("/lista").forward(request, response);
 				
 		}
 
