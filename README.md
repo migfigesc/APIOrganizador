@@ -1,7 +1,4 @@
-![OrganizadorAPI](https://raw.githubusercontent.com/migfigesc/ProyectoIntegracionAISS/main/src/main/webapp/logo.svg)
-
-https://raw.githubusercontent.com/migfigesc/ProyectoIntegracionAISS/main/src/main/webapp/logo.svg
-# Organizador API
+# ![OrganizadorAPI](https://raw.githubusercontent.com/migfigesc/ProyectoIntegracionAISS/main/src/main/webapp/logo.svg)
 
 ## Aumenta tu productividad, con una organización de calidad
 
