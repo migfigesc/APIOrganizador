@@ -2,7 +2,7 @@
 <%@include file="includes/header.jsp"%>
 
 <body>
-	<h1>API Organizador</h1>
+	<h1>Aplicación — Organizador</h1>
 
 	<div class="container">
 	
@@ -10,21 +10,21 @@
 		
 		<form action="list" method="post">
 			Lista: <select name="listaId" onchange="this.form.submit()">
-				<c:forEach items="${requestScope.playlists}" var="lista">
+				<c:forEach items="${requestScope.lista}" var="lista">
     				<option value="${Lista.listaId}" ${Lista.listaId == listaId ? 'selected' : ''}>${Lista.titulo}</option>
     			</c:forEach>
   			</select>
-  			<a href="listaEditView.jsp?listaId=${listaId}" class="button">New list</a>
+  			<a href="listaEditView.jsp?listaId=${listaId}" class="button">Nueva lista</a>
 		</form>
 		
 		<table id="lista">
 			<tr>
 				<th>Titulo</th>
-				<th>Descripcion</th>
+				<th>Descripción</th>
 				<th>Tareas</th>
 			</tr>
 
-			<c:forEach items="${requestScope.plsongs}" var="tarea"> <%-- RequestScope?? wtf bro que es eso --%>
+			<c:forEach items="${requestScope.plsongs}" var="tarea"> <%-- RequestScope?? --%>
 				<tr>
 					<td><c:out value="${tarea.titulo}" /></td>
 					<td><c:out value="${tarea.descripcion}" /></td>
