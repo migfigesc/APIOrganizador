@@ -10,7 +10,7 @@
 		
 		<form action="list" method="post">
 			Lista: <select name="listaId" onchange="this.form.submit()">
-				<c:forEach items="${requestScope.playlists}" var="lista">
+				<c:forEach items="${requestScope.listas}" var="lista">
     				<option value="${Lista.listaId}" ${Lista.listaId == listaId ? 'selected' : ''}>${Lista.titulo}</option>
     			</c:forEach>
   			</select>
@@ -24,7 +24,7 @@
 				<th>Tareas</th>
 			</tr>
 
-			<c:forEach items="${requestScope.plsongs}" var="tarea"> <%-- RequestScope?? wtf bro que es eso --%>
+			<c:forEach items="${requestScope.ltareas}" var="tarea"> <%-- RequestScope?? --%>
 				<tr>
 					<td><c:out value="${tarea.titulo}" /></td>
 					<td><c:out value="${tarea.descripcion}" /></td>

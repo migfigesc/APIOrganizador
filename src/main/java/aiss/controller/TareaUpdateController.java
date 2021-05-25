@@ -46,7 +46,7 @@ public class TareaUpdateController extends HttpServlet {
 		if (operation == null) {
 
 			// Log
-			log.log(Level.FINE, "Update request for contact with id " + tareaId + " (name=" + tarea.getTitulo() + "). Forwarding to edit view.");
+			log.log(Level.FINE, "Petición actualizada por contacto a id " + tareaId + " (nombre=" + tarea.getTitulo() + "). Cambiando a editar la vista.");
 
 			// Forward to edit view
 			RequestDispatcher rd = request.getRequestDispatcher("/tareaEditView.jsp?playlistId=" + listaId);
@@ -77,7 +77,7 @@ public class TareaUpdateController extends HttpServlet {
 			+", Completado"+ tarea.getCompletado() + ", FechaVencimiento" + tarea.getFechaVencimiento() + ". Forwarding to contact list view.");
 
 			// Forward to tarea list view
-			request.setAttribute("message", "tarea updated successfully");
+			request.setAttribute("message", "la tarea se ha actualizado con éxito");
 			request.getRequestDispatcher("/list").forward(request, response);
 				
 		}
