@@ -1,13 +1,10 @@
 package aiss.model.repository;
 
 import java.util.Collection;
-
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 
 import aiss.model.Lista;
-
 import aiss.model.Tarea;
 
 

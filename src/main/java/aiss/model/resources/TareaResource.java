@@ -3,8 +3,6 @@ package aiss.model.resources;
 import java.util.Arrays;
 import java.util.Collection;
 
-import javax.validation.constraints.AssertFalse;
-
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
 
@@ -12,10 +10,9 @@ import aiss.model.Tarea;
 
 public class TareaResource {
 
-	private String uri = "http://organizador-restapi.ew.r.appspot.com/";
-	//private String uri = "http://localhost:8095/api/Tareas";
-//
-	
+	private String uri = "http://organizador-restapi.ew.r.appspot.com/api/tarea";
+
+
 	public Collection<Tarea> getAll() {
 		ClientResource cr = null;
 		Tarea [] Tareas = null;
