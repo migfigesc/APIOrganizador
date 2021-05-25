@@ -9,9 +9,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import aiss.model.Playlist;
 import aiss.model.resources.ListaResource;
-import aiss.model.resources.PlaylistResource;
 
 /**
  * Servlet implementation class ContactDeleteController
@@ -35,21 +33,21 @@ public class TareaDeleteController extends HttpServlet {
 		
 		// Validate data
 		if (tareaId==null) {
-			log.log(Level.SEVERE, "Error deleting Tarea. Null id ");
+			log.log(Level.SEVERE, "Error al eliminar la tarea. Id nulo ");
 			request.getRequestDispatcher("/error.jsp").forward(request, response);
 			return;
 		}
 		
 		// Log
-		log.log(Level.FINE, "Deleting Tarea with id " + tareaId);
+		log.log(Level.FINE, "Eliminando tarea con id " + tareaId);
 		
 		// Delete Tarea
 		ListaResource plr = new ListaResource();
 		plr.removeTarea(listaId, tareaId);
 		
 		// Forward to contact list view
-		request.setAttribute("message", "Tarea deleted successfully");
-		request.getRequestDispatcher("/list").forward(request, response);
+		request.setAttribute("message", "Tarea eliminada correctamente");
+		request.getRequestDispatcher("/lista").forward(request, response);
 	}
 
 
