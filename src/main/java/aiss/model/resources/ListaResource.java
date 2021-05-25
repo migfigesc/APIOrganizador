@@ -3,18 +3,14 @@ package aiss.model.resources;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.restlet.data.MediaType;
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
-
-import com.google.protos.cloud.sql.Client;
 
 import aiss.model.Lista;
 
 public class ListaResource {
 
-	private String uri = "https://organizador-restapi.ew.r.appspot.com/";
-	//private String uri = "http://localhost:8095/api/lists";
+	private String uri = "https://organizador-restapi.ew.r.appspot.com/api/lista";
 	
 
 	public Collection<Lista> getAll() {
