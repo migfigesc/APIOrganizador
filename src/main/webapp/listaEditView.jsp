@@ -15,8 +15,8 @@
 			<input name="listaId" type="hidden" value="${param['listaId']}">
 	
 			<div class="bottom_links">
-				<button type="submit" class="button">Submit</button>
-				<button type="button" onClick="javascript:window.location.href='/lista/${param['listaId']}'" class="button">Cancel</button>
+				<button type="submit" class="button">Crear Lista</button>
+				<button type="button" onClick="javascript:window.location.href='/lista/${param['listaId']}'" class="button">Cancelar</button>
 			</div>
 	
 		</form>
