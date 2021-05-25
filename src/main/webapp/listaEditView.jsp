@@ -16,7 +16,7 @@
 	
 			<div class="bottom_links">
 				<button type="submit" class="button">Crear Lista</button>
-				<button type="button" onClick="javascript:window.location.href='/lista/${param['listaId']}'" class="button">Cancelar</button>
+				<button type="button" onClick="javascript:window.location.href='listaView.jsp'" class="button">Cancelar</button>
 			</div>
 	
 		</form>
