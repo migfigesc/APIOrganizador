@@ -9,15 +9,15 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import aiss.model.Playlist;
-import aiss.model.resources.PlaylistResource;
+import aiss.model.Lista;
+import aiss.model.resources.ListaResource;
 
 /**
  * Servlet implementation class PlaylistNewController
  */
-public class PlaylistNewController extends HttpServlet {
+public class ListaNewController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger log = Logger.getLogger(PlaylistNewController.class.getName());
+	private static final Logger log = Logger.getLogger(ListaNewController.class.getName());
        
 
 	/**
@@ -29,15 +29,15 @@ public class PlaylistNewController extends HttpServlet {
 		String name = request.getParameter("name");
 
 		// Add playlist
-		PlaylistResource plr = new PlaylistResource();
-		Playlist playlist = plr.addPlaylist(new Playlist(name));
+		ListaResource lr = new ListaResource();
+		Lista lista = lr.addLista(new Lista(name));
 
 		// Log
-		log.log(Level.FINE, "New playlist request. name=" + name + ". Forwarding to playlist list view.");
+		log.log(Level.FINE, "Nueva solicitud de lista. Nombre=" + name + ". Reenvío a la vista de listas.");
 
 		// Forward to contact list view
-		request.setAttribute("message", "Playlist created successfully");
-		request.getRequestDispatcher("/list?playlistId=" + playlist.getId()).forward(request, response);
+		request.setAttribute("mensaje", "Lista creada correctamente");
+		request.getRequestDispatcher("/lista/" + lista.getId()).forward(request, response);
 	}
 
 	/**

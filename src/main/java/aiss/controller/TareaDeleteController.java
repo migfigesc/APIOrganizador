@@ -15,12 +15,12 @@ import aiss.model.resources.PlaylistResource;
 /**
  * Servlet implementation class ContactDeleteController
  */
-public class SongDeleteController extends HttpServlet {
+public class TareaDeleteController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
-	private static final Logger log = Logger.getLogger(SongUpdateController.class.getName());
+	private static final Logger log = Logger.getLogger(TareaUpdateController.class.getName());
 	
-    public SongDeleteController() {
+    public TareaDeleteController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -29,25 +29,25 @@ public class SongDeleteController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				
 		// Request data
-		String songId = request.getParameter("songId");
+		String TareaId = request.getParameter("TareaId");
 		String playlistId = request.getParameter("playlistId");
 		
 		// Validate data
-		if (songId==null) {
-			log.log(Level.SEVERE, "Error deleting song. Null id ");
+		if (TareaId==null) {
+			log.log(Level.SEVERE, "Error deleting Tarea. Null id ");
 			request.getRequestDispatcher("/error.jsp").forward(request, response);
 			return;
 		}
 		
 		// Log
-		log.log(Level.FINE, "Deleting song with id " + songId);
+		log.log(Level.FINE, "Deleting Tarea with id " + TareaId);
 		
-		// Delete song
+		// Delete Tarea
 		PlaylistResource plr = new PlaylistResource();
-		plr.removeSong(playlistId, songId);
+		plr.removeTarea(playlistId, TareaId);
 		
 		// Forward to contact list view
-		request.setAttribute("message", "Song deleted successfully");
+		request.setAttribute("message", "Tarea deleted successfully");
 		request.getRequestDispatcher("/list").forward(request, response);
 	}
 
