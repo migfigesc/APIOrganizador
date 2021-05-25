@@ -10,7 +10,7 @@ import org.restlet.resource.ResourceException;
 
 import aiss.model.Song;
 
-public class SongResourceTest {
+public class NocheResourceTest {
 
 	static Song song1, song2, song3;
 	static SongResource sr = new SongResource();

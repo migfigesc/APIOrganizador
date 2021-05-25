@@ -10,7 +10,7 @@ import org.junit.Test;
 import aiss.model.Playlist;
 import aiss.model.Song;
 
-public class PlaylistResourceTest {
+public class IntervaloResourceTest {
 
 	static Playlist playlist, playlist2, playlist3, playlist4;
 	static Song song;
