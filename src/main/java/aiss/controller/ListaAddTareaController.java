@@ -38,19 +38,19 @@ public class ListaAddTareaController extends HttpServlet {
 				
 		// Add song to playlist
 		ListaResource lr = new ListaResource();
-		boolean success =lr.addTarea(null, listaId, tareaId);
+		boolean success =lr.addTarea(listaId, tareaId);
 		
 		if (success) {
-			request.setAttribute("message", "Song added successfully");
-			log.log(Level.FINE, "Song with id=" + songId + " added to playlist with id=" + playlistId + ". Forwarding to playlist list view.");
+			request.setAttribute("mensaje", "Tarea añadida con éxito");
+			log.log(Level.FINE, "Tarea con Id=" + tareaId + " añadida a la lista con id=" + tareaId + ". Forwarding to playlist list view.");
 		}
 		else {
-			request.setAttribute("message", "The song could not be added");
-			log.log(Level.FINE, "The song with id=" + songId + " could not be added to the playlist with id=" + playlistId + ". Perhaps it is duplicated. Forwarding to playlist list view.");
+			request.setAttribute("mensaje", "La tarea no se pudo añadir");
+			log.log(Level.FINE, "La tarea con id=" + tareaId + " a la lista con id=" + tareaId + ". Quizá esté duplicada. Forwarding to playlist list view.");
 		}
 		
 		// Forward to contact list view
-		request.getRequestDispatcher("/list?playlistId=" + playlistId).forward(request, response);
+		request.getRequestDispatcher("/lista/" + listaId+"/"+tareaId).forward(request, response);
 	}
 
 	/**
