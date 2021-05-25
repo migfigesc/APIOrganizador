@@ -30,7 +30,7 @@
 			<label for="fechaVencimiento">FechaVencimiento: </label> 
 			<input id="fechaVencimiento" name="fechaVencimiento" type="text" required="required" value="${tarea.fechaVencimiento}">
 			
-			<label for="ubicacion">Ubicacion: </label> 
+			<label for="ubicacion">Ubicación: </label> 
 			<input id="ubicacion" name="ubicacion" type="text" required="required" value="${tarea.ubicacion}">
 			
 			
@@ -43,7 +43,7 @@
 	
 			<div class="bottom_links">
 				<button type="submit" class="button">Submit</button>
-				<button type="button" onClick="javascript:window.location.href='lista?listaId=${param['listaId']}'" class="button">Cancel</button>
+				<button type="button" onClick="javascript:window.location.href='lista/${param['listaId']}'" class="button">Cancel</button>
 			</div>
 	
 		</form>

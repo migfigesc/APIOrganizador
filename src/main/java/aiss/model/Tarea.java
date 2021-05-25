@@ -1,8 +1,5 @@
 package aiss.model;
 
-import java.time.LocalDate;
-
-
 public class Tarea {
 	
 	private String tareaId;
@@ -16,7 +13,7 @@ public class Tarea {
 	public Tarea() {
 	}
 
-	public Tarea(String titulo, String categoria, String fechaVencimiento) {
+	public Tarea(String titulo, String categoria, String fechaVencimiento, String ubicacion) {
 		this.titulo = titulo;
 		this.categoria = categoria;
 		this.completado = false;
@@ -25,7 +22,7 @@ public class Tarea {
 		this.ubicacion=ubicacion;
 	}
 	
-	public Tarea(String id, String titulo, String categoria, String fechaVencimiento) {
+	public Tarea(String id, String titulo, String categoria, String fechaVencimiento, String ubicacion) {
 		this.tareaId=id;
 		this.titulo = titulo;
 		this.categoria = categoria;

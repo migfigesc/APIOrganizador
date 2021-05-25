@@ -33,14 +33,14 @@ import aiss.model.repository.ListaRepository;
 import aiss.model.repository.MapListaRepository;
 
 
-@Path("/listas")
+@Path("/lista")
 public class ListaResource {
 	
 	/* Singleton */
 	private static ListaResource _instance=null;
 	ListaRepository repository;
 	
-	private ListaResource() {
+	public ListaResource() {
 		repository=MapListaRepository.getInstance();
 	}
 	
@@ -202,5 +202,10 @@ public class ListaResource {
 		repository.removeTarea(listaid, tareaid);		
 		
 		return Response.noContent().build();
+	}
+
+	public boolean addTarea(String listaId, String tareaId) {
+		// TODO Auto-generated method stub
+		return false;
 	}
 }
