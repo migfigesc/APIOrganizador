@@ -24,7 +24,7 @@
 				<th>Tareas</th>
 			</tr>
 
-			<c:forEach items="${requestScope.plsongs}" var="tarea"> <%-- RequestScope?? --%>
+			<c:forEach items="${requestScope.ltareas}" var="tarea"> <%-- RequestScope?? --%>
 				<tr>
 					<td><c:out value="${tarea.titulo}" /></td>
 					<td><c:out value="${tarea.descripcion}" /></td>

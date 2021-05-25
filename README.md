@@ -1,3 +1,6 @@
+![OrganizadorAPI](https://raw.githubusercontent.com/migfigesc/ProyectoIntegracionAISS/main/src/main/webapp/logo.svg)
+
+https://raw.githubusercontent.com/migfigesc/ProyectoIntegracionAISS/main/src/main/webapp/logo.svg
 # Organizador API
 
 ## Aumenta tu productividad, con una organización de calidad
@@ -16,6 +19,3 @@
  - Jaime Moscoso Bernal [jaimosber@alum.us.es]
  - Miguel Figueroa Escribano [migfigesc@alum.us.es]
  - Rafael Rossi García [rafrosgar@alum.us.es]
-
-```
-"# IntegracionAISS" 

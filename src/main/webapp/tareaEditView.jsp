@@ -43,7 +43,7 @@
 	
 			<div class="bottom_links">
 				<button type="submit" class="button">Submit</button>
-				<button type="button" onClick="javascript:window.location.href='lista?listaId=${param['listaId']}'" class="button">Cancel</button>
+				<button type="button" onClick="javascript:window.location.href='lista/${param['listaId']}'" class="button">Cancel</button>
 			</div>
 	
 		</form>
