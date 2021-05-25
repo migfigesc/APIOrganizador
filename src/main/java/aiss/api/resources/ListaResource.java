@@ -33,7 +33,7 @@ import aiss.model.repository.ListaRepository;
 import aiss.model.repository.MapListaRepository;
 
 
-@Path("/listas")
+@Path("/lista")
 public class ListaResource {
 	
 	/* Singleton */

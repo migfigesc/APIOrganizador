@@ -9,40 +9,40 @@ import org.restlet.resource.ResourceException;
 
 import com.google.protos.cloud.sql.Client;
 
-import aiss.model.Playlist;
+import aiss.model.Lista;
 
-public class PlaylistResource {
+public class ListaResource {
 
-	private String uri = "https://lab7-313306.ew.r.appspot.com/api/lists";
+	private String uri = "https://organizador-restapi.ew.r.appspot.com/";
 	//private String uri = "http://localhost:8095/api/lists";
 	
 
-	public Collection<Playlist> getAll() {
+	public Collection<Lista> getAll() {
 		
 		ClientResource cr = null;
-		Playlist [] lists = null;
+		Lista [] lists = null;
 		try {
 			cr = new ClientResource(uri);
-			lists = cr.get(Playlist[].class);
+			lists = cr.get(Lista[].class);
 			
 		} catch (ResourceException re) {
-			System.err.println("Error when retrieving the collections of playlists: " + cr.getResponse().getStatus());
+			System.err.println("Error when retrieving the collections of Listas: " + cr.getResponse().getStatus());
 		}
 		
 		return Arrays.asList(lists);
 	}
 	
 	
-	public Playlist getPlaylist(String playlistId) {
+	public Lista getLista(String ListaId) {
 		
 		ClientResource cr = null;
-		Playlist list = null;
+		Lista list = null;
 		try {
-			cr = new ClientResource(uri + "/" + playlistId);
-			list = cr.get(Playlist.class);
+			cr = new ClientResource(uri + "/" + ListaId);
+			list = cr.get(Lista.class);
 			
 		} catch (ResourceException re) {
-			System.err.println("Error when retrieving the playlist: " + cr.getResponse().getStatus());
+			System.err.println("Error when retrieving the Lista: " + cr.getResponse().getStatus());
 		}
 		
 		return list;
@@ -50,24 +50,24 @@ public class PlaylistResource {
 	}
 	
 
-	public Playlist addPlaylist(Playlist pl) {
+	public Lista addLista(Lista pl) {
 		
 		ClientResource cr = null;
-		Playlist resultPlaylist = null;
+		Lista resultLista = null;
 		try {
 			cr = new ClientResource(uri);
 			cr.setEntityBuffering(true);		// Needed for using RESTlet from JUnit tests
-			resultPlaylist = cr.post(pl,Playlist.class);
+			resultLista = cr.post(pl,Lista.class);
 			
 		} catch (ResourceException re) {
-			System.err.println("Error when adding the playlist: " + cr.getResponse().getStatus());
+			System.err.println("Error when adding the Lista: " + cr.getResponse().getStatus());
 		}
 		
-		return resultPlaylist;
+		return resultLista;
 	}
 	
 
-	public boolean updatePlaylist(Playlist pl) {
+	public boolean updateLista(Lista pl) {
 		ClientResource cr = null;
 		boolean success = true;
 		try {
@@ -77,7 +77,7 @@ public class PlaylistResource {
 			
 			
 		} catch (ResourceException re) {
-			System.err.println("Error when updating the playlist: " + cr.getResponse().getStatus());
+			System.err.println("Error when updating the Lista: " + cr.getResponse().getStatus());
 			success = false;
 		}
 		
@@ -85,31 +85,31 @@ public class PlaylistResource {
 	}
 	
 	
-	public boolean deletePlaylist(String playlistId) {
+	public boolean deleteLista(String ListaId) {
 		ClientResource cr = null;
 		boolean success = true;
 		try {
-			cr = new ClientResource(uri + "/" + playlistId);
+			cr = new ClientResource(uri + "/" + ListaId);
 			cr.setEntityBuffering(true);		// Needed for using RESTlet from JUnit tests
 			cr.delete();
 			
 		} catch (ResourceException re) {
-			System.err.println("Error when deleting the playlist: " + cr.getResponse().getStatus());
+			System.err.println("Error when deleting the Lista: " + cr.getResponse().getStatus());
 			success = false;
 		}
 		
 		return success;
 	}
 	
-	public boolean addSong(String playlistId, String songId) {
+	public boolean addTarea(String ListaId, String TareaId) {
 		ClientResource cr= null;
 		Boolean result= false;
 	try {
-		cr= new ClientResource(uri + "/"+ playlistId+"/"+songId);
+		cr= new ClientResource(uri + "/"+ ListaId+"/"+TareaId);
 		cr.post(" ");
 		result= true;
 	} catch (ResourceException re) {
-		System.err.println("Error when adding song to the playlist: " );
+		System.err.println("Error when adding Tarea to the Lista: " );
 	}
 			
 		
@@ -117,15 +117,15 @@ public class PlaylistResource {
 		
 	}
 	
-	public boolean removeSong(String playlistId, String songId) {
+	public boolean removeTarea(String ListaId, String TareaId) {
 		ClientResource cr= null;
 		Boolean result= false;
 	try {
-		cr= new ClientResource(uri + "/"+ playlistId+"/"+songId);
+		cr= new ClientResource(uri + "/"+ ListaId+"/"+TareaId);
 		cr.delete();
 		result= true;
 	} catch (ResourceException re) {
-		System.err.println("Error when removing song to the playlist: " + re.getStatus());
+		System.err.println("Error when removing Tarea to the Lista: " + re.getStatus());
 	}
 		
 		return result;
