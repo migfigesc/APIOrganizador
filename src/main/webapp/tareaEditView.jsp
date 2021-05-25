@@ -30,7 +30,7 @@
 			<label for="fechaVencimiento">FechaVencimiento: </label> 
 			<input id="fechaVencimiento" name="fechaVencimiento" type="text" required="required" value="${tarea.fechaVencimiento}">
 			
-			<label for="ubicacion">Ubicacion: </label> 
+			<label for="ubicacion">Ubicación: </label> 
 			<input id="ubicacion" name="ubicacion" type="text" required="required" value="${tarea.ubicacion}">
 			
 			
