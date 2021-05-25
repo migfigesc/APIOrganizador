@@ -12,7 +12,7 @@ import aiss.model.Tarea;
 
 public class TareaResource {
 
-	private String uri = "http://organizador-restapi.ew.r.appspot.com/api/Tareas";
+	private String uri = "http://organizador-restapi.ew.r.appspot.com/";
 	//private String uri = "http://localhost:8095/api/Tareas";
 //
 	
