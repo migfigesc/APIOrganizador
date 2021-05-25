@@ -1,6 +1,7 @@
 package aiss.controller;
 
 import java.io.IOException;
+
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -9,18 +10,19 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import aiss.model.resources.PlaylistResource;
+import aiss.api.resources.ListaResource;
+
 
 /**
- * Servlet implementation class PlaylistAddSongController
+ * Servlet implementation class ListaAddTareaController
  */
-public class PlaylistAddSongController extends HttpServlet {
+public class ListaAddTareaController extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	private static final Logger log = Logger.getLogger(PlaylistAddSongController.class.getName());
+	private static final Logger log = Logger.getLogger(ListaAddTareaController.class.getName());
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public PlaylistAddSongController() {
+    public ListaAddTareaController() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -31,12 +33,12 @@ public class PlaylistAddSongController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 	
 		// Request data
-		String songId = request.getParameter("songId");
-		String playlistId = request.getParameter("playlistId");
+		String tareaId = request.getParameter("tareaId");
+		String listaId = request.getParameter("listaId");
 				
 		// Add song to playlist
-		PlaylistResource plr = new PlaylistResource();
-		boolean success = plr.addSong(playlistId, songId);
+		ListaResource lr = new ListaResource();
+		boolean success =lr.addTarea(null, listaId, tareaId);
 		
 		if (success) {
 			request.setAttribute("message", "Song added successfully");
