@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import aiss.model.Playlist;
+import aiss.model.resources.ListaResource;
 import aiss.model.resources.PlaylistResource;
 
 /**
@@ -29,22 +30,22 @@ public class TareaDeleteController extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				
 		// Request data
-		String TareaId = request.getParameter("TareaId");
-		String playlistId = request.getParameter("playlistId");
+		String tareaId = request.getParameter("tareaId");
+		String listaId = request.getParameter("listaId");
 		
 		// Validate data
-		if (TareaId==null) {
+		if (tareaId==null) {
 			log.log(Level.SEVERE, "Error deleting Tarea. Null id ");
 			request.getRequestDispatcher("/error.jsp").forward(request, response);
 			return;
 		}
 		
 		// Log
-		log.log(Level.FINE, "Deleting Tarea with id " + TareaId);
+		log.log(Level.FINE, "Deleting Tarea with id " + tareaId);
 		
 		// Delete Tarea
-		PlaylistResource plr = new PlaylistResource();
-		plr.removeTarea(playlistId, TareaId);
+		ListaResource plr = new ListaResource();
+		plr.removeTarea(listaId, tareaId);
 		
 		// Forward to contact list view
 		request.setAttribute("message", "Tarea deleted successfully");
