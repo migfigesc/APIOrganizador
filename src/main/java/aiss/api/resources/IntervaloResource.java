@@ -3,11 +3,8 @@ package aiss.api.resources;
 import java.util.Arrays;
 import java.util.Collection;
 
-import org.restlet.data.MediaType;
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
-
-import com.google.protos.cloud.sql.Client;
 
 import aiss.model.Intervalo;
 

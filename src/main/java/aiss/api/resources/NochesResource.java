@@ -3,12 +3,9 @@ package aiss.api.resources;
 import java.util.Arrays;
 import java.util.Collection;
 
-import javax.validation.constraints.AssertFalse;
-
 import org.restlet.resource.ClientResource;
 import org.restlet.resource.ResourceException;
 
-import aiss.model.Intervalo;
 import aiss.model.Noche;
 
 public class NochesResource {
