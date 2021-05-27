@@ -478,4 +478,6 @@ components:
                descripcion: Buscar proyecto para integrar
                categoria: Universidad
                completado: true
+               prioridad: ALTA
+               progreso: EN_PROGRESO
                fechaVencimiento: '2021-05-17'
