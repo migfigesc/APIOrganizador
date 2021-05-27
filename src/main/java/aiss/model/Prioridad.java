@@ -1,6 +1,5 @@
 package aiss.model;
 
 public enum Prioridad {
-	Alta,Baja,Media
-
+	ALTA,BAJA,MEDIA
 }

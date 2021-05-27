@@ -40,8 +40,8 @@ public class MapListaRepository implements ListaRepository{
 		estudiar.setCategoria("Estudios");
 		estudiar.setCompletado(false);
 		estudiar.setFechaVencimiento("2020-09-12");
-		estudiar.setProgreso(Progreso.en_progreso);
-		estudiar.setPrioridad(Prioridad.Alta);
+		estudiar.setProgreso(Progreso.EN_PROGRESO);
+		estudiar.setPrioridad(Prioridad.ALTA);
 		addTarea(estudiar);
 		
 		Tarea pedir=new Tarea();
@@ -50,8 +50,8 @@ public class MapListaRepository implements ListaRepository{
 		pedir.setCategoria("Deporte");
 		pedir.setCompletado(false);
 		pedir.setFechaVencimiento("2019-09-12");
-		pedir.setProgreso(Progreso.en_progreso);
-		pedir.setPrioridad(Prioridad.Alta);
+		pedir.setProgreso(Progreso.EN_PROGRESO);
+		pedir.setPrioridad(Prioridad.ALTA);
 
 		addTarea(pedir);
 		
