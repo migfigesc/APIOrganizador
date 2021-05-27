@@ -9,6 +9,21 @@ public class Tarea {
 	private Boolean completado;
 	private String fechaVencimiento;
 	private String ubicacion;
+	private Prioridad prioridad;
+
+	public String getTareaId() {
+		return tareaId;
+	}
+
+	public Prioridad getPrioridad() {
+		return prioridad;
+	}
+
+	public Progreso getProgreso() {
+		return progreso;
+	}
+
+	private Progreso progreso;
 
 	public Tarea() {
 	}

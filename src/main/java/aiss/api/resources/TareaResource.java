@@ -28,6 +28,8 @@ import aiss.api.resources.comparators.ComparatorCategoriaTarea;
 import aiss.api.resources.comparators.ComparatorFechaVencimientoTarea;
 import aiss.api.resources.comparators.ComparatorFechaVencimientoTareaReversed;
 import aiss.api.resources.comparators.ComparatorTituloTarea;
+import aiss.model.Prioridad;
+import aiss.model.Progreso;
 import aiss.model.Tarea;
 import aiss.model.repository.ListaRepository;
 import aiss.model.repository.MapListaRepository;
@@ -53,7 +55,8 @@ public class TareaResource {
 	@GET
 	@Produces("application/json")
 	public Collection<Tarea> getAll(@QueryParam("order") String order,@QueryParam("isEmpty") Boolean isEmpty,
-			@QueryParam("q") String q,@QueryParam("limit") Integer limit,@QueryParam("offset") Integer offset )
+			@QueryParam("q") String q,@QueryParam("limit") Integer limit,@QueryParam("offset") Integer offset ,
+			@QueryParam("progreso") Progreso progreso,@QueryParam("prioridad") Prioridad prioridad )
 	{
 		List<Tarea> result= new ArrayList<Tarea>();
 		
@@ -68,7 +71,7 @@ public class TareaResource {
 		int j=0;
 		for(Tarea tarea : repository.getAllTareas()) {
 			if(j>=offset && i<limit) {
-				if( q == null || tarea.getTitulo().contains(q) || tarea.getCategoria().contains(q) || tarea.getDescripcion().contains(q) ){
+				if( tarea.getPrioridad()==prioridad || tarea.getProgreso()==progreso|| q == null || tarea.getTitulo().contains(q) || tarea.getCategoria().contains(q) || tarea.getDescripcion().contains(q) ){
 					i++;
 					result.add(tarea);
 				}
