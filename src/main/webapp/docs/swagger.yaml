@@ -1,6 +1,6 @@
 openapi: 3.0.0
 servers: 
-  - url: 'https://organizador-restapi.ew.r.appspot.com'
+  - url: 'https://organizador-restapi.ew.r.appspot.com/api'
 info:
   description: Organízate fácilmente con API Organizador
   version: 1.0.0
