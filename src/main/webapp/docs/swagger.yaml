@@ -35,6 +35,26 @@ paths:
               - '-titulo'
               - fechaVencimiento
               - '-fechaVencimiento'
+        - name: progreso
+          in: query
+          description: Order results by progreso
+          required: false
+          schema:
+            type: string
+            enum:
+              - SIN_COMENZAR
+              - EN_PROGRESO
+              - TERMINADO
+        - name: prioridad
+          in: query
+          description: Order results by prioridad
+          required: false
+          schema:
+            type: string
+            enum:
+              - BAJA
+              - MEDIA
+              - ALTA
         - name: q
           in: query
           description: Query to filter
@@ -427,6 +447,8 @@ components:
           descripcion: Buscar proyecto para integrar
           categoria: Universidad
           completado: true
+          prioridad: ALTA
+          progreso: EN_PROGRESO
           fechaVencimiento: '2021-05-17'
     lista:
       required: 
