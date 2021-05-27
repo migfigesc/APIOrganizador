@@ -37,6 +37,18 @@ public class Tarea {
 		this.ubicacion=ubicacion;
 	}
 	
+	public void setTareaId(String tareaId) {
+		this.tareaId = tareaId;
+	}
+
+	public void setPrioridad(Prioridad prioridad) {
+		this.prioridad = prioridad;
+	}
+
+	public void setProgreso(Progreso progreso) {
+		this.progreso = progreso;
+	}
+
 	public Tarea(String id, String titulo, String categoria, String fechaVencimiento, String ubicacion) {
 		this.tareaId=id;
 		this.titulo = titulo;

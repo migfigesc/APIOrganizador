@@ -5,6 +5,8 @@ import java.util.HashMap;
 import java.util.Map;
 
 import aiss.model.Lista;
+import aiss.model.Prioridad;
+import aiss.model.Progreso;
 import aiss.model.Tarea;
 
 
@@ -38,6 +40,8 @@ public class MapListaRepository implements ListaRepository{
 		estudiar.setCategoria("Estudios");
 		estudiar.setCompletado(false);
 		estudiar.setFechaVencimiento("2020-09-12");
+		estudiar.setProgreso(Progreso.en_progreso);
+		estudiar.setPrioridad(Prioridad.Alta);
 		addTarea(estudiar);
 		
 		Tarea pedir=new Tarea();
@@ -46,6 +50,8 @@ public class MapListaRepository implements ListaRepository{
 		pedir.setCategoria("Deporte");
 		pedir.setCompletado(false);
 		pedir.setFechaVencimiento("2019-09-12");
+		pedir.setProgreso(Progreso.en_progreso);
+		pedir.setPrioridad(Prioridad.Alta);
 
 		addTarea(pedir);
 		
