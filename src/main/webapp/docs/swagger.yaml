@@ -439,6 +439,10 @@ components:
           type: string
         completado:
           type: boolean
+        prioridad:
+          type: string
+        progreso:
+          type: string
         fechaVencimiento:
           type: string
       example:
