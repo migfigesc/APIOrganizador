@@ -11,7 +11,8 @@ import aiss.model.Noche;
 public class NochesResource {
 
 	private String uri = "https://good-night-2021.ew.r.appspot.com/api/v1/noches";
-
+	//private String uri = "http://localhost:8095/api/songs";
+//
 	
 	public Collection<Noche> getAll() {
 		ClientResource cr = null;
@@ -66,7 +67,7 @@ public class NochesResource {
 			result= true;
 	
 		}catch(ResourceException re) {
-			System.err.println("Error al actualizar la noche: " + cr.getResponse().getStatus());
+			System.err.println("Erro al actualizar la noche: " + cr.getResponse().getStatus());
 
 		}
 		return result;
