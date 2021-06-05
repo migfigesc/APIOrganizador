@@ -29,6 +29,23 @@ public class Noche {
 
 
 
+	public Noche( String fecha_suenyo, TipoSuenyo tipo_suenyo, CalidadSuenyo calidadsuenyo,
+			EstadoAnimo estado_animo, Integer hora_in, Integer hora_fin) {
+		super();
+
+		this.fecha_suenyo = fecha_suenyo;
+		this.tipo_suenyo = tipo_suenyo;
+		this.calidadsuenyo = calidadsuenyo;
+		this.estado_animo = estado_animo;
+		this.hora_in = hora_in;
+		this.hora_fin = hora_fin;
+	}
+
+
+
+
+
+
 	public String getId() {
 		return id;
 	}
