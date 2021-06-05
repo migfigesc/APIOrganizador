@@ -1,6 +1,6 @@
 package aiss.model;
 
-public enum CalidadSuenyo {
+public enum Calidad {
 	MUYBUENA, BUENA, NORMAL, MALA, MUYMALA
 
 }

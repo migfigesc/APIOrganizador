@@ -11,7 +11,6 @@ import aiss.model.Noche;
 public class NochesResource {
 
 	private String uri = "https://good-night-2021.ew.r.appspot.com/api/v1/noches";
-
 	
 	public Collection<Noche> getAll() {
 		ClientResource cr = null;

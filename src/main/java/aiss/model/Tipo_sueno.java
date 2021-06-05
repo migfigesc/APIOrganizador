@@ -1,6 +1,6 @@
 package aiss.model;
 
-public enum TipoSuenyo {
+public enum Tipo_sueno {
 	LIGERO, MEDIO, PROFUNDO
 
 }

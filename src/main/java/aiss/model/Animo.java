@@ -1,6 +1,6 @@
 package aiss.model;
 
-public enum EstadoAnimo {
+public enum Animo {
 	TRISTE, FELIZ, ENFADADO, NEUTRO, CANSADO
 
 }

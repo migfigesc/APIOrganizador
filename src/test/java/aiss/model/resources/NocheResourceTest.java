@@ -9,10 +9,10 @@ import org.junit.Test;
 import org.restlet.resource.ResourceException;
 
 import aiss.api.resources.NochesResource;
-import aiss.model.CalidadSuenyo;
-import aiss.model.EstadoAnimo;
+import aiss.model.Calidad;
+import aiss.model.Animo;
 import aiss.model.Noche;
-import aiss.model.TipoSuenyo;
+import aiss.model.Tipo_sueno;
 
 public class NocheResourceTest {
 
@@ -23,10 +23,10 @@ public class NocheResourceTest {
 	public static void setup() throws Exception {
 		
 		// Test noche 1
-		noche1 = nr.addNoche(new Noche("n12","03/11/2020",TipoSuenyo.PROFUNDO, CalidadSuenyo.BUENA, EstadoAnimo.FELIZ,22,6));
+		noche1 = nr.addNoche(new Noche("03/11/2020",Tipo_sueno.PROFUNDO, Calidad.BUENA, Animo.FELIZ,1,6));
 		
 		// Test noche 2
-		noche2 = sr.addNoche(new Noche("n13","04/11/2020",TipoSuenyo.PROFUNDO, CalidadSuenyo.BUENA, EstadoAnimo.FELIZ,00,8));
+		noche3 = nr.addNoche(new Noche("04/11/2020",Tipo_sueno.PROFUNDO, Calidad.BUENA, Animo.FELIZ,1,8));
 	
 		
 	}
@@ -38,6 +38,7 @@ public class NocheResourceTest {
 	}
 	
 	@Test
+
 	public void testGetAll() {
 		Collection<Noche> noches = nr.getAll();
 		
@@ -56,7 +57,7 @@ public class NocheResourceTest {
 		Noche n = nr.getNoche(noche1.getId());
 		
 		assertEquals("Los id de las noches no coinciden", noche1.getId(), n.getId());
-		assertEquals("La fecha de las noches no coinciden", noche1.getCalidadsuenyo(), n.getCalidadsuenyo());
+		assertEquals("La fecha de las noches no coinciden", noche1.getCalidad_suenyo(), n.getCalidad_suenyo());
 		
 		// Show result
 		System.out.println("Noche id: " +  n.getId());
@@ -66,13 +67,13 @@ public class NocheResourceTest {
 	@Test
 	public void testAddNoche() {
 		
-		Noche noche4 = new Noche("n15","03/11/2020",TipoSuenyo.PROFUNDO, CalidadSuenyo.BUENA, EstadoAnimo.FELIZ,22,6);
+		Noche noche4 = new Noche("n15","03/11/2020",Tipo_sueno.PROFUNDO, Calidad.BUENA, Animo.FELIZ,1,6);
 
 		Noche added = nr.addNoche(noche4);
 		
 		assertNotNull("Error añadiendo la noche", noche4);
 		assertEquals("La fecha de la noche no se ha asignado correctamente.", added.getFecha_suenyo(), noche4.getFecha_suenyo());
-		assertEquals("La calidad del sueño de la noche no se ha asignado correctamente.", added.getCalidadsuenyo(), noche4.getCalidadsuenyo());
+		assertEquals("La calidad del sueño de la noche no se ha asignado correctamente.", added.getCalidad_suenyo(), noche4.getCalidad_suenyo());
 		assertEquals("El estado de ánimo no se ha asignado correctamente.", added.getEstado_animo(), noche4.getEstado_animo());
 		assertEquals("La hora de inicio no se ha asignado correctamente.", added.getHora_in(), noche4.getHora_in());
 		assertEquals("La hora de fin no se ha asignado correctamente.", added.getHora_fin(), noche4.getHora_fin());
@@ -83,17 +84,17 @@ public class NocheResourceTest {
 	public void testUpdateNoche() {
 		
 		String fechaSuenyo = "13/12/2020";
-		TipoSuenyo tipoSuenyo = TipoSuenyo.MEDIO;
-		CalidadSuenyo calidadSuenyo = CalidadSuenyo.MALA;
-		EstadoAnimo estadoAnimo = EstadoAnimo.CANSADO;
+		Tipo_sueno tipoSuenyo = Tipo_sueno.MEDIO;
+		Calidad calidadSuenyo = Calidad.MALA;
+		Animo estadoAnimo = Animo.CANSADO;
 		Integer hora_in = 3;
 		Integer hora_fin = 4;
 		
 		// Update noche
 		noche1.setFecha_suenyo("09/10/2019");
-		noche1.setTipo_suenyo(TipoSuenyo.MEDIO);
-		noche1.setCalidadsuenyo(CalidadSuenyo.MUYMALA);
-		noche1.setEstado_animo(EstadoAnimo.ENFADADO);
+		noche1.setTipo_suenyo(Tipo_sueno.MEDIO);
+		noche1.setCalidad_suenyo(Calidad.MUYMALA);
+		noche1.setEstado_animo(Animo.ENFADADO);
 		noche1.setHora_in(2);
 		noche1.setHora_fin(8);
 		
@@ -104,7 +105,7 @@ public class NocheResourceTest {
 		Noche noche = nr.getNoche(noche1.getId());
 		
 		assertEquals("La fecha de la noche no se ha actualizado correctamente.", fechaSuenyo, noche.getFecha_suenyo());
-		assertEquals("La calidad del sueño de la noche no se ha actualizado correctamente.", calidadSuenyo, noche.getCalidadsuenyo());
+		assertEquals("La calidad del sueño de la noche no se ha actualizado correctamente.", calidadSuenyo, noche.getCalidad_suenyo());
 		assertEquals("El estado de ánimo no se ha actualizado correctamente.", estadoAnimo, noche.getEstado_animo());
 		assertEquals("La hora de inicio no se ha actualizado correctamente.", hora_in, noche.getHora_in());
 		assertEquals("La hora de fin no se ha actualizado correctamente.", hora_fin, noche.getHora_fin());
