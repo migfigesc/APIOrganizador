@@ -65,7 +65,7 @@ public class NochesResource {
 			result= true;
 	
 		}catch(ResourceException re) {
-			System.err.println("Error al actualizar la noche: " + cr.getResponse().getStatus());
+			System.err.println("Erro al actualizar la noche: " + cr.getResponse().getStatus());
 
 		}
 		return result;

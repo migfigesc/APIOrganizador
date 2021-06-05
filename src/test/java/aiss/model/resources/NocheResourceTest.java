@@ -17,7 +17,7 @@ import aiss.model.Tipo_sueno;
 public class NocheResourceTest {
 
 	static Noche noche1, noche2, noche3;
-	static NochesResource nr = new NochesResource();
+	static NochesResource sr = new NochesResource();
 	
 	@BeforeClass
 	public static void setup() throws Exception {
@@ -33,14 +33,14 @@ public class NocheResourceTest {
 
 	@AfterClass
 	public static void tearDown() throws Exception {
-		nr.deleteNoche(noche1.getId());
-		nr.deleteNoche(noche3.getId());
+		sr.deleteNoche(noche1.getId());
+		sr.deleteNoche(noche3.getId());
 	}
 	
 	@Test
 
 	public void testGetAll() {
-		Collection<Noche> noches = nr.getAll();
+		Collection<Noche> noches = sr.getAll();
 		
 		assertNotNull("La colección de noches es nula.", noches);
 		
@@ -54,7 +54,7 @@ public class NocheResourceTest {
 
 	@Test
 	public void testGetNoche() {
-		Noche n = nr.getNoche(noche1.getId());
+		Noche n = sr.getNoche(noche1.getId());
 		
 		assertEquals("Los id de las noches no coinciden", noche1.getId(), n.getId());
 		assertEquals("La fecha de las noches no coinciden", noche1.getCalidad_suenyo(), n.getCalidad_suenyo());
@@ -69,7 +69,7 @@ public class NocheResourceTest {
 		
 		Noche noche4 = new Noche("n15","03/11/2020",Tipo_sueno.PROFUNDO, Calidad.BUENA, Animo.FELIZ,1,6);
 
-		Noche added = nr.addNoche(noche4);
+		Noche added = sr.addNoche(noche4);
 		
 		assertNotNull("Error añadiendo la noche", noche4);
 		assertEquals("La fecha de la noche no se ha asignado correctamente.", added.getFecha_suenyo(), noche4.getFecha_suenyo());
@@ -98,11 +98,11 @@ public class NocheResourceTest {
 		noche1.setHora_in(2);
 		noche1.setHora_fin(8);
 		
-		boolean success = nr.updateNoche(noche1);
+		boolean success = sr.updateNoche(noche1);
 		
 		assertTrue("Error actualizando la noche", success);
 		
-		Noche noche = nr.getNoche(noche1.getId());
+		Noche noche = sr.getNoche(noche1.getId());
 		
 		assertEquals("La fecha de la noche no se ha actualizado correctamente.", fechaSuenyo, noche.getFecha_suenyo());
 		assertEquals("La calidad del sueño de la noche no se ha actualizado correctamente.", calidadSuenyo, noche.getCalidad_suenyo());
@@ -116,12 +116,12 @@ public class NocheResourceTest {
 	public void testDeleteNoche() {
 		
 		// Delete songs
-		boolean success = nr.deleteNoche(noche2.getId());
+		boolean success = sr.deleteNoche(noche2.getId());
 		
 		assertTrue("Error eliminando la noche", success);
 		
-		Noche noche = nr.getNoche(noche2.getId());
-		assertNull("La noche no se ha eliminado correctamente", noche);
+		Noche noche = sr.getNoche(noche2.getId());
+		assertNull("La noche no se ha añadido correctamente", noche);
 	}
 
 }
