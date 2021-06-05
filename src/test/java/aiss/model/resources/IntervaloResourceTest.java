@@ -26,7 +26,6 @@ public class IntervaloResourceTest {
 		intervalo2 = ivr.addIntervalo(new Intervalo("25/05/2021","26/05/2021"));
 		intervalo3 = ivr.addIntervalo(new Intervalo("29/05/2021","30/05/2021"));
 		
-		
 	
 		noche = nr.addNoche(new Noche());
 		if(noche!=null)

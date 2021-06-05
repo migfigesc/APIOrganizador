@@ -27,6 +27,7 @@ public class NocheResourceTest {
 		
 		// Test noche 2
 		noche2 = sr.addNoche(new Noche("n13","04/11/2020",TipoSuenyo.PROFUNDO, CalidadSuenyo.BUENA, EstadoAnimo.FELIZ,00,8));
+	
 		
 	}
 
