@@ -23,10 +23,10 @@ public class NocheResourceTest {
 	public static void setup() throws Exception {
 		
 		// Test noche 1
-		noche1 = nr.addNoche(new Noche("03/11/2020",Tipo_sueno.PROFUNDO, Calidad.BUENA, Animo.FELIZ,1,6));
+		noche1 = sr.addNoche(new Noche("n14","03/11/2020",Tipo_sueno.PROFUNDO, Calidad.BUENA, Animo.FELIZ,1,6));
 		
 		// Test noche 2
-		noche3 = nr.addNoche(new Noche("04/11/2020",Tipo_sueno.PROFUNDO, Calidad.BUENA, Animo.FELIZ,1,8));
+		noche3 = sr.addNoche(new Noche("n15","04/11/2020",Tipo_sueno.PROFUNDO, Calidad.BUENA, Animo.FELIZ,1,8));
 	
 		
 	}
@@ -54,7 +54,10 @@ public class NocheResourceTest {
 
 	@Test
 	public void testGetNoche() {
+		
+		System.out.println(noche2);
 		Noche n = sr.getNoche(noche1.getId());
+		
 		
 		assertEquals("Los id de las noches no coinciden", noche1.getId(), n.getId());
 		assertEquals("La fecha de las noches no coinciden", noche1.getCalidad_suenyo(), n.getCalidad_suenyo());
@@ -67,7 +70,7 @@ public class NocheResourceTest {
 	@Test
 	public void testAddNoche() {
 		
-		Noche noche4 = new Noche("n15","03/11/2020",Tipo_sueno.PROFUNDO, Calidad.BUENA, Animo.FELIZ,1,6);
+		Noche noche4 = new Noche("n16","03/11/2020",Tipo_sueno.PROFUNDO, Calidad.BUENA, Animo.FELIZ,1,6);
 
 		Noche added = sr.addNoche(noche4);
 		

@@ -8,6 +8,7 @@ public class Noche {
 	private Animo estado_animo;
 	private Integer hora_in;
 	private Integer hora_fin;
+	private Integer duracion;
 	
 	public Noche() {}
 	
@@ -18,6 +19,8 @@ public class Noche {
 		this.estado_animo=animo;
 		this.hora_in=HIn;
 		this.hora_fin=HFin;
+		 this.duracion=this.getDuracion();
+
 	}
 	
 	public Noche(String id,String fecha, Tipo_sueno t_suen, Calidad calidad, Animo animo, Integer HIn, Integer HFin) {
@@ -28,6 +31,8 @@ public class Noche {
 		this.estado_animo=animo;
 		this.hora_in=HIn;
 		this.hora_fin=HFin;
+		 this.duracion=this.getDuracion();
+		
 	}
 
 	
@@ -89,18 +94,18 @@ public class Noche {
 		this.hora_fin = hora_fin;
 	}
 	
-//public Integer getDuracion() {
-//	if (getHora_in()==null || getHora_fin()==null) {
-//		throw new NullPointerException("No puede existir una noche con hora inicial o final nulas");
-//	}
-//	Integer res=null;
-//	if(getHora_in()>getHora_fin()) {
-//		res=24-getHora_in() + getHora_fin();
-//	}else {
-//		res=getHora_fin()-getHora_in();
-//	}
-//	return res;
-//		
-//	}
+public Integer getDuracion() {
+	if (getHora_in()==null || getHora_fin()==null) {
+		throw new NullPointerException("No puede existir una noche con hora inicial o final nulas");
+	}
+	Integer res=null;
+	if(getHora_in()>getHora_fin()) {
+		res=24-getHora_in() + getHora_fin();
+	}else {
+		res=getHora_fin()-getHora_in();
+	}
+	return res;
+		
+	}
 
 }
