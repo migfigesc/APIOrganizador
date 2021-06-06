@@ -61,11 +61,11 @@ public class IntervaloResourceTest {
 		Intervalo i = ivr.getIntervalo(intervalo.getId());
 		
 		assertEquals("El Id de los intervalos no coincide", intervalo.getId(), i.getId());
-		assertEquals("Las fechas de inicio no coinciden", intervalo.getfecha_in(), i.getfecha_in());
+		assertEquals("Las fechas de inicio no coinciden", intervalo.getFechaIn(), i.getFechaIn());
 		
 		// Show result
 		System.out.println("Id del Intervalo: " +  i.getId());
-		System.out.println("Fecha de Inicio: " +  i.getfecha_in());
+		System.out.println("Fecha de Inicio: " +  i.getFechaIn());
 
 	}
 
@@ -77,8 +77,8 @@ public class IntervaloResourceTest {
 		intervalo4 = ivr.addIntervalo(new Intervalo(fechaIn,fechaFin));
 		
 		assertNotNull("Error al añadir el intervalo.", intervalo4);
-		assertEquals("La fecha de inicio no se ha introducido correctamente.", fechaIn, intervalo4.getfecha_in());
-		assertEquals("La fecha final no se ha introducido correctamente.", fechaFin, intervalo4.getfecha_fin());
+		assertEquals("La fecha de inicio no se ha introducido correctamente.", fechaIn, intervalo4.getFechaIn());
+		assertEquals("La fecha final no se ha introducido correctamente.", fechaFin, intervalo4.getFechaFin());
 	}
 
 	@Test
@@ -89,16 +89,16 @@ public class IntervaloResourceTest {
 		//fecha fin, fecha inicio, id, noches
 
 		// Update playlist
-		intervalo.setfecha_in(fechaIn);
-		intervalo.setfecha_fin(fechaFin);
+		intervalo.setFechaIn(fechaIn);
+		intervalo.setFechaFin(fechaFin);
 
 		boolean success = ivr.updateIntervalo(intervalo);
 		
 		assertTrue("Error when updating the playlist", success);
 		
 		Intervalo iv  = ivr.getIntervalo(intervalo.getId());
-		assertEquals("La fecha de inicio no se ha actualizado correctamente", fechaIn, iv.getfecha_in());
-		assertEquals("La fecha final no se ha actualizado correctamente", fechaFin, iv.getfecha_fin());
+		assertEquals("La fecha de inicio no se ha actualizado correctamente", fechaIn, iv.getFechaIn());
+		assertEquals("La fecha final no se ha actualizado correctamente", fechaFin, iv.getFechaFin());
 
 	}
 

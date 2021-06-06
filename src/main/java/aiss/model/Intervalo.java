@@ -1,84 +1,91 @@
 package aiss.model;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+"id",
+"fecha_in",
+"fecha_fin",
+"noches"
+})
+@Generated("jsonschema2pojo")
 public class Intervalo {
 
-	private String id;
-	private String fecha_in;
-	private String fecha_fin;
-	private List<Noche> noches;
-	
-	public Intervalo() {}
-	
-	public Intervalo(String fecha_in, String fecha_fin) {
-		this.fecha_in = fecha_in;
-		this.fecha_fin = fecha_fin;
-	}
-	
-	protected void setnoches(List<Noche> s) {
-		noches = s;
-	}
-	
-	public String getId() {
-		return id;
-	}
+@JsonProperty("id")
+private String id;
+@JsonProperty("fecha_in")
+private String fechaIn;
+@JsonProperty("fecha_fin")
+private String fechaFin;
+@JsonProperty("noches")
+private Object noches;
+@JsonIgnore
+private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-	public void setId(String id) {
-		this.id = id;
-	}
+public Intervalo() {}
 
-	public String getfecha_in() {
-		return fecha_in;
-	}
+public Intervalo(String fecha_in, String fecha_fin) {
+    this.fechaIn = fecha_in;
+    this.fechaFin = fecha_fin;
+}
 
-	public void setfecha_in(String fecha_in) {
-		this.fecha_in = fecha_in;
-	}
+@JsonProperty("id")
+public String getId() {
+return id;
+}
 
-	public String getfecha_fin() {
-		return fecha_fin;
-	}
+@JsonProperty("id")
+public void setId(String id) {
+this.id = id;
+}
 
-	public void setfecha_fin(String fecha_fin) {
-		this.fecha_fin = fecha_fin;
-	}
-	
-	public List<Noche> getnoches() {
-		return noches;
-	}
-	
-	public Noche getSong(String id) {
-		
-		if (noches==null)
-			return null;
-		
-		Noche noche =null;
-		for(Noche n: noches)
-			if (n.getId().equals(id))
-			{
-				noche=n;
-				break;
-			}
-		
-		return noche;
-	}
-	
-	public void addSong(Noche n) {
-		if (noches==null)
-			noches = new ArrayList<Noche>();
-		noches.add(n);
-	}
-	
-	public void deleteSong(Noche n) {
-		noches.remove(n);
-	}
-	
-	public void deleteSong(String id) {
-		Noche n = getSong(id);
-		if (n!=null)
-			noches.remove(n);
-	}
+@JsonProperty("fecha_in")
+public String getFechaIn() {
+return fechaIn;
+}
+
+@JsonProperty("fecha_in")
+public void setFechaIn(String fechaIn) {
+this.fechaIn = fechaIn;
+}
+
+@JsonProperty("fecha_fin")
+public String getFechaFin() {
+return fechaFin;
+}
+
+@JsonProperty("fecha_fin")
+public void setFechaFin(String fechaFin) {
+this.fechaFin = fechaFin;
+}
+
+@JsonProperty("noches")
+public Object getNoches() {
+return noches;
+}
+
+@JsonProperty("noches")
+public void setNoches(Object noches) {
+this.noches = noches;
+}
+
+@JsonAnyGetter
+public Map<String, Object> getAdditionalProperties() {
+return this.additionalProperties;
+}
+
+@JsonAnySetter
+public void setAdditionalProperty(String name, Object value) {
+this.additionalProperties.put(name, value);
+}
 
 }
