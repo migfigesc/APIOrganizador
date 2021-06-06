@@ -34,7 +34,7 @@ public class NocheResourceTest {
 	@AfterClass
 	public static void tearDown() throws Exception {
 		sr.deleteNoche(noche1.getId());
-		sr.deleteNoche(noche2.getId());
+		sr.deleteNoche(noche3.getId());
 	}
 	
 	@Test
