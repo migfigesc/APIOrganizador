@@ -1,111 +1,161 @@
 package aiss.model;
 
+import java.util.HashMap;
+import java.util.Map;
+import javax.annotation.Generated;
+import com.fasterxml.jackson.annotation.JsonAnyGetter;
+import com.fasterxml.jackson.annotation.JsonAnySetter;
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonInclude;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
+
+@JsonInclude(JsonInclude.Include.NON_NULL)
+@JsonPropertyOrder({
+"id",
+"fecha_suenyo",
+"tipo_suenyo",
+"calidad_suenyo",
+"estado_animo",
+"hora_in",
+"hora_fin",
+"duracion"
+})
+@Generated("jsonschema2pojo")
 public class Noche {
-	private String id;
-	private String fecha_suenyo;
-	private Tipo_sueno tipo_sueno;
-	private Calidad calidad_suenyo;
-	private Animo estado_animo;
-	private Integer hora_in;
-	private Integer hora_fin;
-	private Integer duracion;
-	
-	public Noche() {}
-	
-	public Noche(String fecha, Tipo_sueno t_suen, Calidad calidad, Animo animo, Integer HIn, Integer HFin) {
-		this.fecha_suenyo=fecha;
-		this.tipo_sueno=t_suen;
-		this.calidad_suenyo=calidad;
-		this.estado_animo=animo;
-		this.hora_in=HIn;
-		this.hora_fin=HFin;
-		 this.duracion=this.getDuracion();
 
-	}
-	
-	public Noche(String id,String fecha, Tipo_sueno t_suen, Calidad calidad, Animo animo, Integer HIn, Integer HFin) {
-		this.id=id;
-		this.fecha_suenyo=fecha;
-		this.tipo_sueno=t_suen;
-		this.calidad_suenyo=calidad;
-		this.estado_animo=animo;
-		this.hora_in=HIn;
-		this.hora_fin=HFin;
-		 this.duracion=this.getDuracion();
-		
-	}
+@JsonProperty("id")
+private String id;
+@JsonProperty("fecha_suenyo")
+private String fechaSuenyo;
+@JsonProperty("tipo_suenyo")
+private String tipoSuenyo;
+@JsonProperty("calidad_suenyo")
+private String calidadSuenyo;
+@JsonProperty("estado_animo")
+private String estadoAnimo;
+@JsonProperty("hora_in")
+private Integer horaIn;
+@JsonProperty("hora_fin")
+private Integer horaFin;
+@JsonProperty("duracion")
+private Integer duracion;
+@JsonIgnore
+private Map<String, Object> additionalProperties = new HashMap<String, Object>();
 
-	
-	public String getId() {
-		return id;
-	}
+public Noche() {}
 
-	public void setId(String id) {
-		this.id = id;
-	}
+public Noche(String fecha, String t_suen, String calidad, String animo, Integer HIn, Integer HFin) {
+    this.fechaSuenyo=fecha;
+    this.tipoSuenyo=t_suen;
+    this.calidadSuenyo=calidad;
+    this.estadoAnimo=animo;
+    this.horaIn=HIn;
+    this.horaFin=HFin;
+     this.duracion=this.getDuracion();
 
-	public String getFecha_suenyo() {
-		return fecha_suenyo;
-	}
+}
 
-	public void setFecha_suenyo(String fecha_suenyo) {
-		this.fecha_suenyo = fecha_suenyo;
-	}
+public Noche(String id,String fecha, String t_suen, String calidad, String animo, Integer HIn, Integer HFin) {
+    this.id=id;
+    this.fechaSuenyo=fecha;
+    this.tipoSuenyo=t_suen;
+    this.calidadSuenyo=calidad;
+    this.estadoAnimo=animo;
+    this.horaIn=HIn;
+    this.horaFin=HFin;
+     this.duracion=this.getDuracion();
 
-	public Tipo_sueno getTipo_suenyo() {
-		return tipo_sueno;
-	}
+}
 
-	public void setTipo_suenyo(Tipo_sueno tipo_suenyo) {
-		this.tipo_sueno = tipo_suenyo;
-	}
-	
-	
+@JsonProperty("id")
+public String getId() {
+return id;
+}
 
-	public Calidad getCalidad_suenyo() {
-		return calidad_suenyo;
-	}
+@JsonProperty("id")
+public void setId(String id) {
+this.id = id;
+}
 
-	public void setCalidad_suenyo(Calidad calidad_suenyo) {
-		this.calidad_suenyo = calidad_suenyo;
-	}
+@JsonProperty("fecha_suenyo")
+public String getFechaSuenyo() {
+return fechaSuenyo;
+}
 
-	public Animo getEstado_animo() {
-		return estado_animo;
-	}
+@JsonProperty("fecha_suenyo")
+public void setFechaSuenyo(String fechaSuenyo) {
+this.fechaSuenyo = fechaSuenyo;
+}
 
-	public void setEstado_animo(Animo estado_animo) {
-		this.estado_animo = estado_animo;
-	}
+@JsonProperty("tipo_suenyo")
+public String getTipoSuenyo() {
+return tipoSuenyo;
+}
 
-	public Integer getHora_in() {
-		return hora_in;
-	}
+@JsonProperty("tipo_suenyo")
+public void setTipoSuenyo(String tipoSuenyo) {
+this.tipoSuenyo = tipoSuenyo;
+}
 
-	public void setHora_in(Integer hora_in) {
-		this.hora_in = hora_in;
-	}
+@JsonProperty("calidad_suenyo")
+public String getCalidadSuenyo() {
+return calidadSuenyo;
+}
 
-	public Integer getHora_fin() {
-		return hora_fin;
-	}
+@JsonProperty("calidad_suenyo")
+public void setCalidadSuenyo(String calidadSuenyo) {
+this.calidadSuenyo = calidadSuenyo;
+}
 
-	public void setHora_fin(Integer hora_fin) {
-		this.hora_fin = hora_fin;
-	}
-	
+@JsonProperty("estado_animo")
+public String getEstadoAnimo() {
+return estadoAnimo;
+}
+
+@JsonProperty("estado_animo")
+public void setEstadoAnimo(String estadoAnimo) {
+this.estadoAnimo = estadoAnimo;
+}
+
+@JsonProperty("hora_in")
+public Integer getHoraIn() {
+return horaIn;
+}
+
+@JsonProperty("hora_in")
+public void setHoraIn(Integer horaIn) {
+this.horaIn = horaIn;
+}
+
+@JsonProperty("hora_fin")
+public Integer getHoraFin() {
+return horaFin;
+}
+
+@JsonProperty("hora_fin")
+public void setHoraFin(Integer horaFin) {
+this.horaFin = horaFin;
+}
+
+@JsonProperty("duracion")
 public Integer getDuracion() {
-	if (getHora_in()==null || getHora_fin()==null) {
-		throw new NullPointerException("No puede existir una noche con hora inicial o final nulas");
-	}
-	Integer res=null;
-	if(getHora_in()>getHora_fin()) {
-		res=24-getHora_in() + getHora_fin();
-	}else {
-		res=getHora_fin()-getHora_in();
-	}
-	return res;
-		
-	}
+return duracion;
+}
+
+@JsonProperty("duracion")
+public void setDuracion(Integer duracion) {
+this.duracion = duracion;
+}
+
+@JsonAnyGetter
+public Map<String, Object> getAdditionalProperties() {
+return this.additionalProperties;
+}
+
+@JsonAnySetter
+public void setAdditionalProperty(String name, Object value) {
+this.additionalProperties.put(name, value);
+}
 
 }
